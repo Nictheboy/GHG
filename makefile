@@ -1,13 +1,12 @@
 cc = g++
 prom = hackgame
-header = hackgame.h mujs.h
+header = hackgame.h
 src = $(shell find ./ -maxdepth 1 -name "*.cpp")
-lib = lib/libmujs.o
 obj = $(src:%.cpp=%.o) 
 
-$(prom): $(obj) $(lib)
-	$(cc) -o $(prom) $(obj) $(lib)
-
+$(prom): $(obj)
+	$(cc) -o $(prom) $(obj)
+	cp $(prom) bin/$(prom) 
 %.o: %.c $(header)
 	$(cc) -c $< -o $@
 
