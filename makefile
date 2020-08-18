@@ -6,7 +6,7 @@ obj = $(src:%.cpp=%.o)
 
 $(prom): $(obj)
 	$(cc) -o $(prom) $(obj)
-	cp $(prom) bin/$(prom) 
+	mv $(prom) bin/$(prom) 
 %.o: %.c $(header)
 	$(cc) -c $< -o $@
 
