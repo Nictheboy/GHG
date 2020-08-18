@@ -6,18 +6,12 @@ void localtime_s_f(struct tm *ts,time_t *timep)
 {
     localtime_r(timep,ts);
 }
-#include <unistd.h>
-#ifdef NO_DELAY
-void delay(double time){}
-#else
-void delay(double time)//
-{
-    usleep(1000000*time);
-}
-#endif
 void clearScreen()
 {
     system("clear");
+}
+void ChangeColor(string _Color) {
+  cout << _Color;
 }
 #else
 #ifdef WINDOWS_OS
@@ -25,15 +19,9 @@ void localtime_s_f(struct tm *ts,time_t *timep)
 {
     localtime_s(ts,timep);
 }
-#include <windows.h>
-#ifdef NO_DELAY
-void delay(double time){}
-#else
-void delay(double time)//
-{
-    Sleep(time*1000);
+void ChangeColor(int _Color) {
+  SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), _Color);
 }
-#endif
 void clearScreen()
 {
     system("cls");
@@ -50,6 +38,18 @@ void delay(double time)//
 }
 #else
 #error Error opitions!
-#endif
-#endif
-#endif
+#endif // TEST_WINDOWS
+#endif // WINDOWS_OS
+#endif // LINUX_OS
+
+#ifdef NO_DELAY
+void delay(double time) {}
+#else
+void delay(double time) {
+  clock_t tmp = clock();
+
+  while (1) {
+    if ((double)(clock() - tmp) / CLOCKS_PER_SEC >= time) break;
+  }
+}
+#endif // NO_DELAY

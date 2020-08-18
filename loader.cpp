@@ -4,13 +4,19 @@
 //调用init_new_game()或init_from_file()
 void loadgame()
 {
+    logo();
+    clearScreen();
     string input;
-    cout<<"输入new创建新游戏"<<endl;
-    cout<<"输入存档名称打开游戏"<<endl;
-    getline(cin,input);
+    cout << "输入";
+    ChangeColor(GREEN);
+    cout << "new";
+    ChangeColor(RESET);
+    cout << "创建新游戏, " << endl;
+    cout << "输入存档名称打开游戏." << endl;
+    getline(cin, input);
     if (input == "new")
     {
-        init_new_game();
+      init_new_game();
     }
     else
     {
@@ -26,6 +32,7 @@ void init_from_file(string filename)//从文件加载游戏
     if (root == NULL)
     {
         cout<<"读入文件失败！程序退出";
+        delay(2);
         exit(0);
     }
 
@@ -34,7 +41,7 @@ void init_from_file(string filename)//从文件加载游戏
     if (version > SAVING_VERSION)
     {
         cout<<"您的游戏版本过低，无法进行游戏！请联系开发者获取最新版本"<<endl;
-        cout<<"开发者QQ:2492515121"<<endl;
+        cout<<"开发者QQ:2492515121或1011268631"<<endl;
         delay(999);
         exit(0);
     }
@@ -49,12 +56,14 @@ void init_from_file(string filename)//从文件加载游戏
     if (load_game_from_tree(root) == false)
     {
         cout<<"加载失败！程序退出";
+        delay(2);
         exit(0);
     }
     default_filename = filename;
     root->remove_all();
     delete root;
     cout<<"加载程序顺利退出"<<endl;
+    delay(2);
     return;
 }
 
@@ -64,10 +73,10 @@ void init_from_file(string filename)//从文件加载游戏
 void init_new_game()
 {
     using namespace FileSystem;
-    if (!DEBUG_FLAG)
-    {
-        logo();//显示logo
-    }
+    //if (!DEBUG_FLAG)
+    //{
+    //    logo();//显示logo
+    //}
     //clearScreen();//清屏
 
     
@@ -86,7 +95,8 @@ void init_new_game()
     tempnode->add_node(temp->netnode,false);//连接这个主机的节点
     temp->root->add_new_txt("1.txt","123");//创建文件
     temp->event_before_input=&task_1_1;//绑定设置剧情函数
-    temp->name="localhost";
+    temp->username = "root";
+    temp->name = "LocalHost";
 //    temp->locate_dir("/bin")->add_file(new file("mujs.exe",&exe_mujs));
     localhost=temp;
     
@@ -404,6 +414,7 @@ DataTree::data_node* load_tree_from_file(string filename)
     if (! fcin.is_open())
     {
         cout << "打开文件失败"<<endl;
+        delay(2);
         return NULL;
     }
     int format_before = 0;
@@ -445,6 +456,7 @@ DataTree::data_node* load_tree_from_file(string filename)
             if ((format_now-format_before)>1)
             {
                 cout<<"输入的tab过多！加载失败"<<endl;
+                delay(2);
                 return NULL;
             }
             now = now->add(key,value);
@@ -789,6 +801,7 @@ bool load_game_from_tree(DataTree::data_node *root)
     if (now == nullptr)
     {
         cout<<"缺少必要的数据！"<<endl;
+        delay(2);
         return false;
     }
     for (int k=0; k<now->subdata_node.size(); k++)
@@ -997,6 +1010,7 @@ bool load_game_from_tree(DataTree::data_node *root)
     if (now == nullptr)
     {
         cout<<"缺少必要的数据！"<<endl;
+        delay(2);
         return false;
     }
     for (int k=0; k<now->subdata_node.size(); k++)
@@ -1034,6 +1048,7 @@ bool load_game_from_tree(DataTree::data_node *root)
     if (now == nullptr)
     {
         cout<<"缺少必要的数据！"<<endl;
+        delay(2);
         return false;
     }
     for (int k=0; k<now->subdata_node.size(); k++)
@@ -1076,6 +1091,7 @@ bool load_game_from_tree(DataTree::data_node *root)
     if (now == nullptr)
     {
         cout<<"缺少必要的数据！"<<endl;
+        delay(2);
         return false;
     }
     for (int k=0; k<now->subdata_node.size(); k++)
@@ -1105,6 +1121,7 @@ bool load_game_from_tree(DataTree::data_node *root)
     if (now == nullptr)
     {
         cout<<"缺少必要的数据！"<<endl;
+        delay(2);
         return false;
     }
     for (int k=0; k<now->subdata_node.size(); k++)

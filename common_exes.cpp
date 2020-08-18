@@ -1,4 +1,4 @@
-/*
+﻿/*
  *文件名:   common_exe.cpp
  *作者:     Nictheboy
  *内容:     实现普通exe
@@ -132,9 +132,11 @@ int exe_passguesser(int i,const char **t, Computer *c)
     //int type=-1;
     int port=-1;
     
-    cout<<BG_BLUE<<"----密码破解器v3.1.0----"<<RESET<<endl;
-    cout<<BG_BLUE<<"| 中国黑客联盟荣誉出品 |"<<RESET<<endl;
-    cout<<BG_BLUE<<"------------------------"<<RESET<<endl;
+    ChangeColor(BG_BLUE);
+    cout<<"-----密码破解器v3.1.0------"<<endl;
+    cout<<"|  中国黑客联盟荣誉出品   |"<<endl;
+    cout<<"---------------------------"<<endl;
+    ChangeColor(RESET);
     delay(0.3);
     cout<<"正在加载中...";
     delay(2);
@@ -176,7 +178,9 @@ int exe_passguesser(int i,const char **t, Computer *c)
         cout<<".";
         delay(0.5);
         cout<<".";
-        cout<<endl<<endl<<BG_BLUE<<"成功连接到主机"<<ip<<"!"<<RESET<<endl;
+        ChangeColor(BG_BLUE);
+        cout<<endl<<endl<<"成功连接到主机"<<ip<<"!"<<endl;
+        ChangeColor(RESET);
         cout<<"正在加载用户/密码字典";
         delay(1);
         cout<<".";
@@ -189,16 +193,24 @@ int exe_passguesser(int i,const char **t, Computer *c)
         if (reply.computer->password=="123456"||
             reply.computer->password=="password123"||
             reply.computer->password=="root"||
-            reply.computer->password=="password0abc")
+            reply.computer->password=="password0abc"||
+            reply.computer->password=="new_author_ink")
         {
             delay(10);
-            cout<<endl<<BG_BLUE<<"破解成功！"<<RESET<<endl;
+            ChangeColor(BG_BLUE);
+            cout<<endl<<"破解成功！"<<endl;
+            ChangeColor(RESET);
             cout<<"|-目标主机IP:"<<ip<<endl;
             cout<<"|-目标主机端口:"<<port<<endl;
             cout<<"|-目标服务类型:telnet"<<endl;
             cout<<"|"<<endl;
-            cout<<"|-"<<BG_RED<<"用户:"<<reply.computer->username<<RESET<<endl;
-            cout<<"|-"<<BG_RED<<"密码:"<<reply.computer->password<<RESET<<endl;
+            
+            cout << "|-" ; ChangeColor(BG_RED); 
+            cout <<  "用户:" << reply.computer->username << endl;
+            ChangeColor(RESET);
+            cout << "|-"; ChangeColor(BG_RED); 
+            cout << "密码:" << reply.computer->password << endl;
+            ChangeColor(RESET);
         }
         else
         {
@@ -333,9 +345,11 @@ int exe_ipconfig(int i,const char **t,Computer *c)
     c->netnode->show();
     if (true)
     {
-        cout<<BG_RED<<"以下信息不会在正式版中显示！"<<RESET<<endl;
-        cout<<"全局网络表:"<<endl;
-        Internet->show();
+        ChangeColor(BG_RED);
+        cout<<"以下信息不会在正式版中显示！"<<endl;
+        ChangeColor(RESET);
+        /*cout<<"全局网络表:"<<endl;
+        Internet->show();*/
     }
     return 0;
 }
@@ -393,7 +407,7 @@ int exe_myexe(int n,const char **t, Computer *c)
     return 0;
 }
 
-int exe_portscan(int n,const char **t, Computer *c)
+int exe_portscan(int n,const char *t[], Computer *c)
 {
     if (n<2)
     {
@@ -413,7 +427,17 @@ int exe_portscan(int n,const char **t, Computer *c)
         for (int i=0; i < rc->port_list.size(); i++)
         {
             delay(rand()%3+1);
-            cout<<"发现开放端口"<<rc->port_list[i].port<<endl;
+            ChangeColor(BG_GREEN);
+            cout<<"该计算机的开放端口:\n";
+            ChangeColor(RESET);
+            cout<<"端口名              端口号\n"; ChangeColor(RESET);
+            cout<<"--------------------------\n";
+            cout<<rc->port_list[i].name;
+            for (int j = 0; j < (21-rc->port_list[i].name.size()); ++j) {
+              cout<<' ';
+            }
+            cout<<rc->port_list[i].port;
+            cout<<endl;
         }
     }
     return 0;
@@ -462,7 +486,9 @@ int exe_tracer(int n,const char **t, Computer *c)
         {
             if (up_failed)
             {
-                cout<<RED<<BG_BLUE<<"数据包丢失，无法追踪 !"<<RESET<<endl;
+                ChangeColor(RB);
+                cout<<"数据包丢失，无法追踪 !"<<endl;
+                ChangeColor(RESET);
                 break;
             }
             else
@@ -495,5 +521,80 @@ int exe_tracer(int n,const char **t, Computer *c)
     {
         cout<<"追踪失败"<<endl;
     }
+    return 0;
+}
+
+// FTP端口破解工具
+int exe_FTPoverflow(int i, const char** t, Computer* c) {
+    if (i < 2) {
+      cout << "参数不足!语法:FTPcuter [主机IP](:[端口])\n";
+      return 0;
+    }
+    if (i > 2) {
+      cout<<"错误：参数太多！";
+      return 0;
+    }
+    int port;
+    string ip;
+    try
+    {
+      ipport_cutter cutter(t[1], 23);
+      port = cutter.port;
+      ip = cutter.ip;
+    }
+    catch (string)
+    {
+      return 0;
+    }
+
+    connection_reply reply = c->netnode->connect(t[1]);
+    cout << "正在与远程主机" << ip << "建立会话...\n";
+    delay(2);
+    c->netnode->send_package(ip, "建立连接数据通道", "telnet");
+    cout<<"远程主机连接成功\n";
+    ChangeColor(RED);
+    cout<<"正在准备发送连接请求...\n";
+    delay(1);
+    ChangeColor(GREEN);
+    cout<<"发送请求中...\n";
+    delay(2);
+    srand((int)time(0));
+    int number = rand() % 100;
+    for (int i = 0; i < number; ++i) {
+      cout << "第" << i << "条请求: \n\n";
+      cout << "status: refuse\n";
+      delay(0.5);
+    }
+    cout << "第" << number << "条请求: \n\n";
+    cout << "status: allow\n\n";
+    ChangeColor(BG_MAGENTA);
+    cout << "正在寻找端口...\n";
+    delay(6);
+    ChangeColor(RESET);
+    cout << "已找到端口，端口号：22\n";
+    ChangeColor(BLUE);
+    cout << "破解中...\n";
+    for (int i = 0; i <= 50; ++i) {
+      int j;
+      for (j = 0; j < i; j++)
+      {
+        cout << "▇";
+      }
+      for (j = 0; j <= 50 - i; j++)
+      {
+        cout << " ";
+      }
+      cout << "]" << i * 2 << "%\r";
+      delay(0.05);
+    }
+    reply.computer->open_port("FTP", 2899);
+    reply.computer->write_log("OPEN_PORT", c->netnode->ip+"打开了FTP端口.");
+    cout << '\n';
+    ChangeColor(RESET);
+    cout << "破解完成\n";
+    cout << "------------------------\n";
+    cout << "|-端口名称 : FTP\n";
+    cout << "|-端口号 : " << reply.computer->get_port("FTP");
+    cout << "------------------------\n";
     return 0;
 }

@@ -6,30 +6,49 @@
  */
 #include "hackgame.h"
 
+int init_num = 0;
+
 //一下是新的剧情函数列表
-bool task_new_1();
-bool task_new_2();
-bool task_new_3();
-bool task_new_4();
-bool task_new_5();
-bool task_new_6();
-bool task_new_7();
-bool task_new_8();
-bool task_new_9();
-bool end_task();
-typedef bool (*task_function)();
-task_function task_added_function[10]={//新的剧情函数数组
-    task_new_1,
-    task_new_2,
-    task_new_3,
-    task_new_4,
-    task_new_5,
-    task_new_6,
-    task_new_7,
-    task_new_8,
-    task_new_9,
-    end_task
-};
+void task_new_1();
+void task_new_2();
+void task_new_3();
+void task_new_4();
+void task_new_5();
+void task_new_6();
+void task_new_7();
+void task_new_8();
+void task_new_9();
+void end_task();
+typedef void (*task_function)();
+// 用于剧情系统更新
+bool next_task(task_function task, int task_num) {
+  bool check = false;
+  if (task == NULL) {
+    ChangeColor(RED);
+    cout << "内部错误: 严重: 下一关的关卡函数数据不存在\n";
+    ChangeColor(RESET);
+    return check;
+  }
+  if (task_num > task_number) {
+    /*关卡数不符*/
+    return check;
+  }
+  check = true;
+  (*task)();
+  return check;
+}
+//task_function task_added_function[10]={//新的剧情函数数组
+//    task_new_1,
+//    task_new_2,
+//    task_new_3,
+//    task_new_4,
+//    task_new_5,
+//    task_new_6,
+//    task_new_7,
+//    task_new_8,
+//    task_new_9,
+//    end_task
+//};
 
 //下面是一下剧情函数
 
@@ -39,50 +58,115 @@ void game_over(int i)//i=1:未删除日志
     switch(i)
     {
     case 1:
-        cout<<BG_RED<<"您忘记删除日志了！！！警察发现了你的黑客行为，您被捕了"<<RESET<<endl;
+        ChangeColor(BG_RED);
+        cout<<"日志未删除，游戏结束."<<endl;
+        cout<<"Game over."<<endl;
+        ChangeColor(RESET);
         break;
     default:
-        cout<<"Case Undifined!!!"<<endl;
+        cout<<"Case Undifined!"<<endl;
     }
     delay(9999999);
     exit(0);
 }
 
+string get_name_data() {
+  cout << "设置用户名:";
+  ChangeColor(GREEN);
+  string tmp;
+  getline(cin, tmp);
+  ChangeColor(RESET);
+  localhost->username = tmp;
+  return tmp;
+}
+
+string get_host_name() {
+  cout << "设置主机名:";
+  ChangeColor(GREEN);
+  string tmp;
+  getline(cin, tmp);
+  ChangeColor(RESET);
+  localhost->name = tmp;
+  return tmp;
+}
+
+string get_pass_data() {
+  cout << "设置主机密码(将不会显示到终端上):";
+  ChangeColor(BLACK);
+  string tmp;
+  getline(cin, tmp);
+  ChangeColor(RESET);
+  localhost->password = tmp;
+  return tmp;
+}
+
+void init_task() {
+  while (true) {
+    clearScreen();
+    string tmp1 = get_name_data();
+    if (tmp1 == "") {
+      localhost->username = "root";
+    }
+    string tmp2 = get_host_name();
+    if (tmp2 == "") {
+      localhost->name = "LocalHost";
+    }
+    string tmp3 = get_pass_data();
+    if (tmp3 == "") {
+      ChangeColor(YELLOW);
+      cout << "警告: 密码不可为空，请重新设置!";
+      ChangeColor(RESET);
+      delay(1.6);
+      clearScreen();
+      cout << "设置用户名:";
+      ChangeColor(GREEN);
+      cout << tmp1 << endl;
+      ChangeColor(RESET);
+      cout << "设置主机名:";
+      ChangeColor(GREEN);
+      cout << tmp2 << endl;
+      ChangeColor(RESET);
+      get_pass_data();
+    } else {
+      init_num+=1;
+      return;
+    }
+  }
+}
+
 //这一堆函数控制剧情逻辑
 void task_1_1()//这个任务还有让用户设置用户名密码的功能
-{   
-    clearScreen();
-    cout<<"请您为自己起一个名字:";
-    string tmp;
-    getline(cin, tmp);
-    localhost->username=tmp;
-    cout<<"设置您的主机密码:";
-    getline(cin, tmp);
-    localhost->password=tmp;
-    
-    clearScreen();;
-    //delay(2);
-    cout<<BG_RED<<"您收到一封邮件！输入mail查看\n\n"<<RESET;
-    
-    sub_task_number=0;
-    task_number=1;//设置关卡变量是因为mail程序根据关卡变量决定输出的邮件
-    
-    localhost->event_before_input=NULL;
-    Internet->connect(COMPUTER1).computer->event_before_input=&task_1_2;//将任务绑定到主机2，用于检测玩家是否连接成功
+{
+    if (init_num == 0) {
+      init_task();
+      clearScreen();
+    } 
+      
+      //delay(2);
+      ChangeColor(BG_RED);
+      cout << "您收到一封邮件！输入mail查看\n\n";
+      ChangeColor(RESET);
+
+      task_number += 1;//设置关卡变量是因为mail程序根据关卡变量决定输出的邮件
+
+      localhost->event_before_input = NULL;
+      Internet->connect(COMPUTER1).computer->event_before_input = &task_1_2;//将任务绑定到主机2，用于检测玩家是否连接成功
 }
 void task_1_2()//玩家连接到主机2后，执行此程序
 {
-    sub_task_number=1;
+    //sub_task_number=1;
     Internet->connect(COMPUTER1).computer->event_before_input=NULL;
-    localhost->event_before_input=&task_2_1;//进入下一关
+    task_number+=1;//进入下一关
+    next_task(&task_2_1, 2);
     //localhost->process_event_before_input();//先处理一下
 }
 void task_2_1()
 {
-    cout<<BG_RED<<"您收到一封邮件！输入mail查看"<<RESET<<endl;
-    task_number=2;
-    localhost->event_before_input=&task_2_2;//下一子关卡
-    localhost->process_event_before_input();//先处理一下
+    ChangeColor(BG_RED);
+    cout<<"您收到一封邮件！输入mail查看\n\n"<<endl;
+    ChangeColor(RESET);
+    task_number += 1;
+    next_task(&task_2_2, 2);
 }
 void task_2_2()
 {
@@ -98,7 +182,9 @@ void task_2_2()
 void task_3_1()
 {
     task_number=3;
-    cout<<BG_RED<<"您收到一封邮件！输入mail查看"<<RESET<<endl;
+    ChangeColor(BG_RED);
+    cout<<"您收到一封邮件！输入mail查看\n\n"<<endl;
+    ChangeColor(RESET);
     localhost->event_before_input=&task_3_2;//同上
     localhost->process_event_before_input();
 }
@@ -113,7 +199,9 @@ void task_3_2()
 void task_4_1()
 {
     task_number=4;
-    cout<<BG_RED<<"您收到一封邮件！输入mail查看"<<RESET<<endl;
+    ChangeColor(BG_RED);
+    cout<<"您收到一封邮件！输入mail查看\n\n"<<endl;
+    ChangeColor(RESET);
     localhost->event_before_input=task_4_2;//同上
     localhost->process_event_before_input();
 }
@@ -128,7 +216,9 @@ void task_4_2()
 void task_5_1()
 {
     task_number=5;
-    cout<<BG_RED<<"您收到一封邮件！输入mail查看"<<RESET<<endl;
+    ChangeColor(BG_RED);
+    cout<<"您收到一封邮件！输入mail查看\n\n"<<endl;
+    ChangeColor(RESET);
     localhost->event_before_input=task_5_2;//同上
     localhost->process_event_before_input();
 }
@@ -143,7 +233,9 @@ void task_5_2()
 void task_6_1()
 {
     task_number=6;
-    cout<<BG_RED<<"您收到一封邮件！输入mail查看"<<RESET<<endl;
+    ChangeColor(BG_RED);
+    cout<<"您收到一封邮件！输入mail查看\n\n"<<endl;
+    ChangeColor(RESET);
     localhost->event_before_input=task_6_2;//同上
     localhost->process_event_before_input();
 }
@@ -168,7 +260,9 @@ void task_6_2()
 void task_7_1()
 {
     task_number=7;
-    cout<<BG_RED<<"您收到一封邮件！输入mail查看"<<RESET<<endl;
+    ChangeColor(BG_RED);
+    cout<<"您收到一封邮件！输入mail查看\n\n"<<endl;
+    ChangeColor(RESET);
     localhost->event_before_input=task_7_2;
     localhost->process_event_before_input();
 }
@@ -203,7 +297,9 @@ void task_7_3()
 void task_8_1()
 {
     task_number=8;
-    cout<<BG_RED<<"您收到一封邮件！输入mail查看"<<RESET<<endl;
+    ChangeColor(BG_RED);
+    cout<<"您收到一封邮件！输入mail查看\n\n"<<endl;
+    ChangeColor(RESET);
     Computer *temp;
     net_node *tempnode;
     net_node *tempnode2;
@@ -322,27 +418,29 @@ void task_8_2()
 
 void task_9_1()
 {
-    task_number = 9;
+  task_number = 9;
     //cout<<BG_RED<<"您收到一封邮件！输入mail查看"<<RESET<<endl;
-    localhost->event_before_input=task_9_2;
-    localhost->process_event_before_input();
+  next_task(&task_9_2, 9);
 }
 
 void task_9_2(){
-    if (task_added_function[task_number - 9]()){//调用对应的新的剧情函数
+    //if (task_added_function[task_number - 9]()){//调用对应的新的剧情函数
         //if条件成立说明函数返回true
-        task_number++;//关卡号加一。这样下一次if判断条件时，会调用下一个剧情函数
+        task_number++;
         check_and_autosave();//自动保存
-    }
+        next_task(&task_new_1, 10);
+    /*}*/
 }
 
-bool end_task(){//永远不会通过的任务
-    return false;
+void end_task(){//永远不会通过的任务
+  
 }
 
-bool task_new_1(){
-    //29.102.4.31
-    cout<<BG_RED<<"您收到一封邮件！输入mail查看"<<RESET<<endl;
+void task_new_1(){
+    //29.102.4.31    
+    ChangeColor(BG_RED);
+    cout<<"您收到一封邮件！输入mail查看\n\n"<<endl;
+    ChangeColor(RESET);
     Computer *temp=new Computer("29.102.4.31");
     Internet->add_node(temp->netnode);
     temp->style=telnet;
@@ -352,10 +450,10 @@ bool task_new_1(){
     temp->locate_dir("/log")->add_file(new FileSystem::file("firewall.log","nwfofeweofowfiowjofwojfwojfowjojwoejonvru"));//放文件
     temp->locate_dir("/log")->add_file(new FileSystem::file("telnet.log","nwfofeweofowfiowjofwojfwojfowjojwoejonvru"));//放文件
     temp->locate_dir("/log")->add_file(new FileSystem::file("about.log","nwfofeweofowfiowjofwojfwojfowjojwoejonvru"));//放文件
-    return true;//下一个剧情函数
+    next_task(&task_new_2, 10);
 }
 
-bool task_new_2(){
+void task_new_2(){
     connection_reply reply = Internet->connect("29.102.4.31");
     if (reply.computer){
         Computer * c = reply.computer;
@@ -363,38 +461,57 @@ bool task_new_2(){
             c->locate_file("/log/firewall.log") || 
             c->locate_file("/log/telnet.log") || 
             c->locate_file("/log/about.log"))){
-            return true;//通关
+            task_number+=1;
+            next_task(&end_task, 11);
         }
     }
-    return false;
 }
 
-bool task_new_3(){
-    cout<<BG_RED<<"您收到一封邮件！输入mail查看"<<RESET<<endl;
-    return true;//下一个剧情函数
+//void task_new_3(){
+//    ChangeColor(BG_RED);
+//    cout<<"您收到一封邮件！输入mail查看\n\n"<<endl;
+//    ChangeColor(RESET);
+//    Computer* temp = new Computer("187.56.222.10");
+//    Internet->add_node(temp->netnode);
+//    temp->style = telnet;
+//    temp->password = "new_author_ink";
+//    temp->open_port("telnet", 23);
+//    // 放文件
+//    temp->locate_dir("/bin")->add_file(new FileSystem::file("FTPoverflow.exe", &exe_FTPoverflow));
+//    next_task(&task_new_4, 11);
+//}
+//
+//void task_new_4(){
+//   connection_reply reply = Internet->connect("29.102.4.31");
+//   if (reply.computer) {
+//     Computer* c = reply.computer;
+//     if (c->locate_file("/log/connect.log")) {
+//       game_over(1);
+//     }
+//     else {
+//       task_number++;
+//       next_task(&end_task, 12);
+//     }
+//   }
+//}
+
+void task_new_5(){
+    return;
 }
 
-bool task_new_4(){
-    return false;//永远不会通关
+void task_new_6(){
+    return;
 }
 
-bool task_new_5(){
-    return false;
+void task_new_7(){
+    return;
 }
 
-bool task_new_6(){
-    return false;
+void task_new_8(){
+    return;
 }
 
-bool task_new_7(){
-    return false;
-}
-
-bool task_new_8(){
-    return false;
-}
-
-bool task_new_9(){
-    return false;
+void task_new_9(){
+    return;
 }
 

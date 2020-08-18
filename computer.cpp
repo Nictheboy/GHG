@@ -31,8 +31,8 @@ Computer::Computer()
     event_before_input = NULL;//设置事件为空
     dc_signal = false;//初始化
     from = "";//初始化
-    username = "root";//默认用户
-    password = "weoferhsohogowergorewhogheowgh";//默认口令，别嘻嘻嘻，主机口令在创建后肯定是要改的
+    username = "";//默认用户
+    password = "";//默认口令，别嘻嘻嘻，主机口令在创建后肯定是要改的
 
     name = "";//无主机名
     style = basic_style;//默认样式
@@ -61,8 +61,8 @@ Computer::Computer(string ip)//参数是主机的ip
     event_before_input = NULL;//设置事件为空
     dc_signal = false;//初始化
     from = "";//初始化
-    username = "root";//默认用户
-    password = "weoferhsohogowergorewhogheowgh";//默认口令
+    username = "";//默认用户
+    password = "";//默认口令
 
     netnode = new net_node(ip);//新建一个网络节点，ip为参数中的IP
     netnode->bind_computer(this);//将主机绑定到新节点
@@ -189,7 +189,7 @@ int Computer::cd(int i, const char** t)
     //判断是否缺少参数
     if (i < 2)
     {
-        cout << "语法错误！\n";
+        cout << "语法错误！正确语法: cd [切换的文件夹名]\n";
         return 0;
     }
     //temp指向参数对应的文件夹
@@ -200,7 +200,7 @@ int Computer::cd(int i, const char** t)
     }
     else//如果是NULL
     {
-        cout << "找不到该目录!" << endl;
+        cout << "找不到此目录." << endl;
     }
     return 0;
 }
@@ -210,7 +210,7 @@ FileSystem::dir* Computer::locate_dir(string path)
 {
     vector<string> listed_ps = split(path, "/", true);//分割
     FileSystem::dir* temp;
-    int i;
+    int i = 0;
     if (listed_ps.size() == 0)//path是空则返回当前目录
     {
         return dir_now;
@@ -260,7 +260,7 @@ FileSystem::file* Computer::locate_file(string path)
     //和上面类似
     vector<string> listed_ps = split(path, "/", true);
     FileSystem::dir* temp;
-    int i;
+    int i = 0;
     if (listed_ps.size() == 0)
     {
         return nullptr;
@@ -345,8 +345,13 @@ int Computer::type(int i, const char* t[])
 
     if (i < 2)
     {
+        // Ink: 为什么要写两个下标，请见431行.
+      if (t[0][0] == 't') {
         cout << "缺少参数!语法:type [文件名]\n";
         return 0;
+      }
+      cout << "缺少参数!语法:cat [文件名]\n";
+      return 0;
     }
     string filename = t[1];
     file* f = locate_file(filename);
@@ -370,8 +375,12 @@ int Computer::copy(int i, const char* c[])
 
     if (i < 3)
     {
+      if (c[0][0] == 'c' && c[0][1] == 'o') {
         cout << "缺少参数!语法:copy [被复制文件名] [目标文件名]\n";
         return 0;
+      }
+      cout << "缺少参数!语法:cp [被复制文件名] [目标文件名]\n";
+      return 0;
     }
     vector<string> listed_to = split(c[2], "/");
     string name = listed_to.at(listed_to.size() - 1);
@@ -421,16 +430,22 @@ int Computer::mkdir(int n, const char* c[])
 }
 
 //删除文件
-int Computer::del(int n, const char* c[])
+int Computer::del(int n, const char** c)
 {
     using namespace FileSystem;
     if (n < 2)
     {
-        cout << "缺少参数!语法:del [删除的文件或文件夹名]\n";
+        // Ink: 我试过了，这里用c[0] == "del"无效
+        // Ink: 凡是我用了两个下标，就跟上一行意思差不多.
+        if (c[0][0] == 'd') {
+            cout << "缺少参数!语法:del [删除的文件或文件夹名]\n";
+            return 0;
+        }
+        cout << "缺少参数!语法:rm [删除的文件或文件夹名]\n";
         return 0;
     }
     
-    if (!(dir_now->delete_file(c[1]) || dir_now->delete_dir(c[1])))
+    if (!(dir_now->delete_file(c[1]) || dir_now->delete_dir(c[1])) && c[1][0] != '*')
     {
         class dir* fath = dir_now->turn_file_ps_into_dir_ps(c[1]);
         file* f = dir_now->locate_file(c[1]);
@@ -438,12 +453,29 @@ int Computer::del(int n, const char* c[])
         //cout<<f<<endl;
         if (fath && f)
         {
+            cout<<"正在删除文件"<<f->name<<".......";
+            delay(2);
             fath->delete_file(f->name);
+            cout<<"complete.\n";
+            return 0;
         }
         else
         {
-            cout << "文件或文件夹不存在!\n";
+            cout<<"找不到文件或文件夹.\n";
+            return 0;
         }
+    }
+    if (c[1][0] == '*') {
+        if (dir_now->content.size() == 0 && dir_now->subdir.size() == 0) {
+            cout<<"没有可删除的内容.\n";
+            return 0;
+        }
+        cout<<"正在删除中.......";
+        delay(2);
+        dir_now->content.clear();
+        dir_now->subdir.clear();
+        cout << "complete.\n";
+        return 0;
     }
     /*
     dir * d = locate_dir (dir_now->turn_file_ps_into_dir_ps (c[1]));
@@ -795,23 +827,18 @@ bool Computer::process_command(string cmd)
 
 void Computer::echo_before_command()
 {
-    cout << style.before_ip;
-    cout << username;
-    cout << style.between_ip;
-    if (name != "")
-    {
-        cout << name;
-    }
-    else
-    {
-        cout << netnode->ip;
-    }
-    cout << " ";
-    if (dir_now == root)
-        cout << "/";
-    else
-        cout << dir_now->name;
-    cout <<style.after_ip<< style.getinput;
+  cout << style.before_ip;
+  ChangeColor(CYAN);
+  cout << username;
+  cout << style.between_ip;
+  cout << name;
+  ChangeColor(GREEN);
+  if (dir_now->name == "") {
+    cout << "~";
+  } else {cout << "/" + dir_now->name;}
+  ChangeColor(RESET);
+  cout <<style.after_ip<< style.getinput;
+  ChangeColor(GREEN);
 }
 
 //运行这台电脑
@@ -848,6 +875,7 @@ void Computer::run( bool need_login/*是否需要登陆*/,
         process_event_before_input();//处理事件
         echo_before_command();//根据style的数据输出前面那些提示符。这些不是很重要
         getline(cin, input);
+        ChangeColor(RESET);
         if (input != "")
         {
             try
@@ -858,12 +886,17 @@ void Computer::run( bool need_login/*是否需要登陆*/,
                 }
                 else
                 {
-                    cout << input << "不是任何内部或外部指令！！输入help获取指令列表\n";
+                    vector<string> tmp = split(input, " ");
+                    ChangeColor(BG_RED);
+                    cout << "Terminal: " << tmp[0] << ": 未找到命令.\n" ;
+                    ChangeColor(RESET);
                 }
             }
             catch (...)
             {
-                cout<<BG_RED<<"执行命令'"<<input<<"'的时候发生了未处理的异常!"<<RESET<<endl;
+                ChangeColor(BG_RED);
+                cout<<"执行命令'"<<input[0]<<"'的时候发生了未处理的异常.\n"<<endl;
+                ChangeColor(RESET);
             }
         }
     }

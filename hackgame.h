@@ -2,7 +2,7 @@
 #define hackgame
 /*
 -----#####------#--------#--------#####------
-----#-----#-----#--------#-------#-----------
+----#-----#-----#--------#-------#-----#-----
 ---#------------#--------#------#------------
 ---#------------##########------#------------
 ---#--######----#--------#------#--######----
@@ -26,9 +26,12 @@ V0.3.1  更新了文件系统，取消了dir_tree和currentd_ir，使用root和d
 V0.3.2  加入了指令rm，cp，ls和cat，作为指令del，copy，dir和type的别名
 V0.4.0  加入了savegame指令保存游戏，以及加载游戏的功能
 V1.0.0  加入剧情，整理代码
-V1.0.4  解决了若干Bug
+V1.0.4  修复了若干Bug
 V1.1.0  加入了自动保存
-V1.2.0	解决了若干bug,并修改了剧情系统
+V1.2.0	修复了若干bug,并修改了剧情系统
+V2.0.0  修复了若干bug,并增加剧情,且改良portscan.exe,增加了ChangeColor函数,更好的支持了跨系统
+        解决了cd后文件夹名前没有/的问题, 增加了rm *(或del *)功能, 增加了别名报错区分, 更改了界
+        面环境
 */
 
 //有很多人反应，黑客游戏的代码可读性太差。
@@ -51,11 +54,13 @@ V1.2.0	解决了若干bug,并修改了剧情系统
 #define SAVING_VERSION 4//存档版本
 //#define DEBUG//调试标志，打开这个后会执行一些代码，直接测试最后一关
 #if defined(_WIN32) || defined(_WIN64)
+#include <windows.h>
 #define WINDOWS_OS//Windows模式
 #else
-#define LINUX_OS//Linux模式，适合在linux上编译
+#include <unistd.h>
+#define LINUX_OS
 #endif
-//#define TEST_WINDOWS//用于在Linux上测试Windows模式
+
 //#define NO_DELAY//无延时，测试用
 
 #ifdef DEBUG
@@ -87,46 +92,45 @@ using namespace std;
 //这个是Linux用的，不懂就别问了，反正你也不打算开发linux版本
 #ifdef LINUX_OS
 #define RESET "\033[0m"
-#define BLACK "\033[30m" /* Black */
 #define RED "\033[31m" /* Red */
+#define RB "\033[31;44m" /* Red and background Blue */
 #define GREEN "\033[32m" /* Green */
 #define YELLOW "\033[33m" /* Yellow */
 #define BLUE "\033[34m" /* Blue */
 #define MAGENTA "\033[35m" /* Magenta */
+#define BLACK "\033[30m" /*Black*/
 #define CYAN "\033[36m" /* Cyan */
-#define WHITE "\033[37m" /* White */
-#define BG_BLACK "\033[40m" /* Black */
 #define BG_RED "\033[41m" /* Red */
 #define BG_GREEN "\033[42m" /* Green */
 #define BG_YELLOW "\033[43m" /* Yellow */
 #define BG_BLUE "\033[44m" /* Blue */
 #define BG_MAGENTA "\033[45m" /* Magenta */
 #define BG_CYAN "\033[46m" /* Cyan */
-#define BG_WHITE "\033[47m" /* White*/
 #else
-#define RESET ""
-#define BLACK "" /* Black */
-#define RED "" /* Red */
-#define GREEN "" /* Green */
-#define YELLOW "" /* Yellow */
-#define BLUE "" /* Blue */
-#define MAGENTA "" /* Magenta */
-#define CYAN "" /* Cyan */
-#define WHITE "" /* White */
-#define BG_BLACK "" /* Black */
-#define BG_RED "" /* Red */
-#define BG_GREEN "" /* Green */
-#define BG_YELLOW "" /* Yellow */
-#define BG_BLUE "" /* Blue */
-#define BG_MAGENTA "" /* Magenta */
-#define BG_CYAN "" /* Cyan */
-#define BG_WHITE "" /* White*/
+// 因为API的Bug，所以Windows下暂时换不了背景颜色
+#define RESET 0x0007
+#define RED 0x0004 /* Red */
+#define RB 0x0004 /* Red and background Blue */
+#define GREEN 0x0002 /* Green */
+#define YELLOW 0x0006 /* Yellow */
+#define BLUE 0x0001 /* Blue */
+#define MAGENTA 0x0005 /* Magenta */
+#define BLACK 0x0000 /*Black*/
+#define CYAN 0x0003 | 0x0008  /* Cyan */
+#define BG_RED 0x0004 /* Red */
+#define BG_GREEN 0x0002 /* Green */
+#define BG_YELLOW 0x0006 /* Yellow */
+#define BG_BLUE 0x0001 /* Blue */
+#define BG_MAGENTA 0x0005 /* Magenta */
+#define BG_CYAN 0x0003 | 0x0008 /* Cyan */
 #endif
 
 
 
 void delay(double time);//这个函数用于延时。它的实现在linux和windows中不一样
 void clearScreen();//用于清屏，linux中会执行clear，windows中会执行cls
+void ChangeColor(int _Color); // 更改控制台颜色(Windows下)
+void ChangeColor(string _Color); // 更改控制台颜色(Linux下)
 void localtime_s_f(struct tm *ts,time_t *timep);
 #ifdef LINUX_OS
 #define sprintf_s snprintf
@@ -323,9 +327,9 @@ typedef void (*event)();//定义了一个数据类型
 class Computer{//这个很关键！
     friend int exe_savegame(int i,const char **t, Computer *c);
 private:
-    bool login();//登陆的效果
     bool dc_signal;//断开连接的标志。用于实现dc
 public:
+    bool login();//登陆的效果
     event event_before_input;//在显示东西让用户输入之前，先执行这个指针指向的函数
     bool process_event_before_input();//调用刚刚那个事件
     
@@ -494,6 +498,7 @@ bool check_and_autosave();//判断是否需要自动保存并执行自动保存�
 
 
 //一些剧情函数的定义
+void init_task();
 void task_1_1();
 void task_1_2();
 void task_2_1();
@@ -520,6 +525,7 @@ int exe_wget(int n,const char **t, Computer *c);
 int exe_help(int i,const char **t, Computer *c);
 int exe_passguesser(int i,const char **t, Computer *c);
 int exe_portscan(int i,const char *t[], Computer *c);
+int exe_FTPoverflow(int i, const char** t, Computer* c);
 int exe_hvm(int i,const char *t[], Computer *c);
 int exe_mail(int n,const char **t,Computer *c);
 int exe_telnet(int i,const char **t,Computer *c);
