@@ -66,7 +66,7 @@ void init_new_game()
     using namespace FileSystem;
     if (!DEBUG_FLAG)
     {
-        logo();//显示logo
+//        logo();//显示logo
     }
     //clearScreen();//清屏
 

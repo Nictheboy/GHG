@@ -3,6 +3,7 @@
 //主程序
 int main()
 {
+    logo();
     loadgame();
     localhost->run(false,"本地控制台");//启动电脑！
     while(true)
