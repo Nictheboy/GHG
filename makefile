@@ -1,15 +1,9 @@
 cc = g++
 prom = hackgame
-header = hackgame.h
-src = $(shell find ./ -maxdepth 1 -name "*.cpp")
-obj = $(src:%.cpp=%.o) 
-
-$(prom): $(obj)
-	$(cc) -o $(prom) $(obj)
-	mv $(prom) bin/$(prom) 
-%.o: %.c $(header)
-	$(cc) -c $< -o $@
-
-clean:
-	rm -rf $(obj) $(prom)
-
+header = $(shell find ./sourceCode -maxdepth 1 -name "*.h")
+src = $(shell find ./sourceCode -maxdepth 1 -name "*.cpp")
+object_code = code.cpp
+$(prom): $(object_code)
+	$(cc) -o $(prom) $(object_code)
+$(object_code): $(header) $(src)
+	cat $(header) $(src) > $(object_code)
