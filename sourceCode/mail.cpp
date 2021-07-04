@@ -248,7 +248,7 @@ int exe_mail(int n,const char **t,Computer *c)
         cout<<"     记得删除日志，包括sniffer.log,还有，记得关闭sniffer.exe(使用指令sniffer stop)，它会暴露你的行踪\n\n";
         cout<<"                                          nic\n";
         break;
-     case 9:
+     case 10:
         cout<<localhost->username<<"，您好\n\n";
         cout<<"您成功完成了这一关！\n\n";
         cout<<"您真是太厉害了，可惜游戏没有关卡了，不然我相信你会是GHG最优秀的玩家。\n\n";
@@ -264,7 +264,7 @@ int exe_mail(int n,const char **t,Computer *c)
         cout<<"                                      游戏作者：\n\n";
         cout<<"                                      Nictheboy\n\n";
         break;
-    case 10:
+    case 9:
         cout<<localhost->username<<"，您好\n\n";
         cout<<"我忘了把一个电脑上的日志删除了。请你到那台电脑上把日志删除。请迅速完成\n\n";
         cout<<"有关信息：\n\n";
