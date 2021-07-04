@@ -89,7 +89,7 @@ using namespace std;
 
 //颜色表
 //这个是Linux用的，不懂就别问了，反正你也不打算开发linux版本
-#ifdef LINUX_OS
+#if defined(linux)
 #define RESET "\033[0m"
 #define BLACK "\033[30m" /* Black */
 #define RED "\033[31m" /* Red */
@@ -107,24 +107,34 @@ using namespace std;
 #define BG_MAGENTA "\033[45m" /* Magenta */
 #define BG_CYAN "\033[46m" /* Cyan */
 #define BG_WHITE "\033[47m" /* White*/
-#else
-#define RESET ""
-#define BLACK "" /* Black */
-#define RED "" /* Red */
-#define GREEN "" /* Green */
-#define YELLOW "" /* Yellow */
-#define BLUE "" /* Blue */
-#define MAGENTA "" /* Magenta */
-#define CYAN "" /* Cyan */
-#define WHITE "" /* White */
-#define BG_BLACK "" /* Black */
-#define BG_RED "" /* Red */
-#define BG_GREEN "" /* Green */
-#define BG_YELLOW "" /* Yellow */
-#define BG_BLUE "" /* Blue */
-#define BG_MAGENTA "" /* Magenta */
-#define BG_CYAN "" /* Cyan */
-#define BG_WHITE "" /* White*/
+#elif defined(WIN32) || defined(WIN64) // changed: fixed the color bug.
+#include <windows.h>
+struct Color {
+  Color(WORD value) : value(value) {}
+  short value;
+};
+#define SET(X) SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), (WORD)X);
+void operator <<(const ostream& stm, const Color& color) {
+  SET(color.value);
+  return;
+}
+#define RESET Color((WORD)0x0007)
+#define BLACK Color((WORD)0x0000) /* Black */
+#define RED Color((WORD)0x0004) /* Red */
+#define GREEN Color((WORD)0x0002) /* Green */
+#define YELLOW Color((WORD)0x0006) /* Yellow */
+#define BLUE Color((WORD)0x0001) /* Blue */
+#define MAGENTA Color((WORD)0x0005) /* Magenta */
+#define CYAN Color((WORD)0x0003) /* Cyan */
+#define WHITE Color((WORD)0x0007) /* White */
+#define BG_BLACK Color((WORD)0x0007) /* Black */
+#define BG_RED Color((WORD)0x0040) /* Red */
+#define BG_GREEN Color((WORD)0x0020) /* Green */
+#define BG_YELLOW Color((WORD)0x0060) /* Yellow */
+#define BG_BLUE Color((WORD)0x0010) /* Blue */
+#define BG_MAGENTA Color((WORD)0x0050) /* Magenta */
+#define BG_CYAN Color((WORD)0x0030) /* Cyan */
+#define BG_WHITE Color((WORD)0x0070) /* White*/
 #endif
 
 
