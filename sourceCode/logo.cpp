@@ -33,6 +33,7 @@ void logo()
     cout<<"-----#####------#--------#--------#####------\n";
     cout<<"GHG：HackGame\n";
     cout<<"作者：Nictheboy 作者QQ：2492515121（搞技术的）\n\n";
+    cout<<"维护者：Ink 维护者QQ：1011268631（Ink.）\n\n";
     cout<<"感谢 梦时工作室 和 芯梦工作室 提供的支持！\n";
     delay(2); 
 }
