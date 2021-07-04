@@ -599,7 +599,7 @@ public:
 #endif
 int exe_undefined(int argc, const char *argv[], Computer *sender)
 {
-    cout << "这是一个没有实现的exe文件！" << endl;
+    cout << "NULL file." << endl;
     return 0;
 }
 #ifndef FOR_XES
@@ -1197,7 +1197,7 @@ int exe_help(int i,const char **t, Computer *c)
     cout<<"mail    查看邮件\n";
     cout<<"mkdir   新建一个文件夹\n";
     cout<<"\n";
-    cout<<"没了，就这么几个，不过这个简单的文件系统我真做了老半天，命令行系统也是我自己做的。命令太少，请谅解。\n";
+    //cout<<"没了，就这么几个，不过这个简单的文件系统我真做了老半天，命令行系统也是我自己做的。命令太少，请谅解。\n";
     //cout<<BG_RED<<"童鞋，一定要试试telnet 29.53.103.3这个指令啊！口令是123456"<<RESET<<endl;
     return 0;
 }
@@ -2802,10 +2802,12 @@ void game_over(int i)//i=1:未删除日志
     switch(i)
     {
     case 1:
-        cout<<BG_RED<<"您忘记删除日志了！！！警察发现了你的黑客行为，您被捕了"<<RESET<<endl;
+        cout<<BG_RED<<"日志未删除，目标已报警。"<<RESET<<endl;
+        delay(2);
+	cout<<"FBI! Open the door!\n";
         break;
     default:
-        cout<<"Case Undifined!!!"<<endl;
+        cout<<"Case Undifined."<<endl;
     }
     delay(9999999);
     exit(0);
@@ -5794,7 +5796,7 @@ int exe_mail(int n,const char **t,Computer *c)
         cout<<"     记得删除日志，包括sniffer.log,还有，记得关闭sniffer.exe(使用指令sniffer stop)，它会暴露你的行踪\n\n";
         cout<<"                                          nic\n";
         break;
-     case 9:
+     case 10:
         cout<<localhost->username<<"，您好\n\n";
         cout<<"您成功完成了这一关！\n\n";
         cout<<"您真是太厉害了，可惜游戏没有关卡了，不然我相信你会是GHG最优秀的玩家。\n\n";
@@ -5807,10 +5809,10 @@ int exe_mail(int n,const char **t,Computer *c)
         cout<<"真诚的感谢您，您玩游戏的过程就是对我最大的支持\n\n";
         cout<<"再见\n\n";
         cout<<"PS：看到这里你可以用savegame指令再保存一下。如果黑客游戏有下一版，您可以直接用这次的存档继续玩\n\n";
-        cout<<"                                      游戏作者：\n\n";
-        cout<<"                                      Nictheboy\n\n";
+        cout<<"                                      游戏作者、维护者：\n\n";
+        cout<<"                                   Nictheboy & Ink\n\n";
         break;
-    case 10:
+    case 9:
         cout<<localhost->username<<"，您好\n\n";
         cout<<"我忘了把一个电脑上的日志删除了。请你到那台电脑上把日志删除。请迅速完成\n\n";
         cout<<"有关信息：\n\n";
@@ -5819,7 +5821,7 @@ int exe_mail(int n,const char **t,Computer *c)
         cout<<"                                          nic\n";
         break;
     default:
-        cout<<"内部错误:关卡不存在!!!\n";
+        cout<<"内部错误:关卡不存在\n";
     }
     return 0;
 }
