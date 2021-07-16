@@ -721,11 +721,18 @@ int Computer::install(int n, const char* c[])
 }
 
 //获取公开共享的文件夹
-FileSystem::dir* Computer::get_www_dir(int port)
+FileSystem::dir* Computer::get_http_dir(int port)
 {
-    if (port == get_port("www"))//检测端口
+    if (port == get_port("http")||port == get_port("www"))//检测端口
+    //www是老版游戏中对http的称呼
     {
-        return locate_dir("/www");
+        FileSystem::dir* http = locate_dir("/web");
+        FileSystem::dir* www = locate_dir("/www");
+        if (www){//解决兼容性问题
+            return www;
+        }else{
+            return http;
+        }
     }
     else {
         return NULL;

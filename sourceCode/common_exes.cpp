@@ -1,7 +1,7 @@
 /*
  *文件名:   common_exe.cpp
  *作者:     Nictheboy
- *内容:     实现普通exe
+ *内容:     实现游戏中的大部分exe
  *
  *最后一次修改: 2020/5/7
  */
@@ -9,63 +9,70 @@
 #include "hackgame.h"
 #endif
 
-//实现普通的exe
-int exe_wget(int n,const char **t, Computer *c)//exe暂时没有注释，请直接看下面的init函数和Computer类构造函数及主函数
+/*
+本代码用途是实现游戏中的大部分exe
+每个函数实现一个exe程序
+命名规则是这样的：int exe_wget(int n,const char **t, Computer *c)实现wget.exe,其他函数以此类推
+参数的解释：
+n是命令行传入参数的个数，相当于argn；t是指向参数列表的指针，相当于argv
+这两个与c语言里main（）参数的意义相同
+c指向启动这个程序的那台计算机
+*/
+
+int exe_wget(int n,const char **t, Computer *c)//实现wget.exe
 {
-    using namespace FileSystem;
-    
-    //data\wget.exe 178.53.100.24
-    //cout<<"wget\n";
-    if (n<2)
-    {
+    using namespace FileSystem;//需要使用文件系统
+    if (n<2){//参数个数小于2
         cout<<"缺少参数！使用方法：\n";
-        cout<<"wget [IP](:端口)           显示远程主机上可以通过www下载的文件列表\n";
+        cout<<"wget [IP](:端口)           显示远程主机上可以通过http下载的文件列表\n";
         cout<<"wget [IP](:端口)  [文件名] 从远处主机上下载文件\n";
         return 0;
     }
-    string ip;
-    int port;
-    //cout<<"ok\n";
-    try
-    {
+    string ip;//输入的ip
+    int port;//输入的端口
+    try{//使用class ipport_cutter将输入的ip和端口分开
+        //如果没有输入端口，该类也会正常工作
         ipport_cutter cutter(t[1],21);
         ip=cutter.ip;
         port=cutter.port;
     }
-    catch(string)
+    catch(string s)
     {
+        cout<<"输入的参数不符合语法！"<<s<<endl;
         return 0;
     }
-    //cout<<ip<<endl;
     connection_reply reply=c->netnode->connect(ip,"http");
-    if (reply.computer == nullptr)
+    //这行是网络更新之后加入的
+    //c->netnode是启动wget的计算机对应的网络节点
+    //调用其connect方法，其实就是从c出发寻找计算机
+    if (reply.computer == nullptr)//没找着。说明输入的ip不对
     {
         cout<<"定位目标主机失败。请检查IP地址是否正确。\n";
         return 0;
     }
     
-    dir *www_dir=reply.computer->get_www_dir(port);
-    if (!www_dir)
+    dir *http_dir=reply.computer->get_http_dir(port);
+    if (!http_dir)
     {
         delay(2);
-        cout<<"无法连接至目标主机"<<port<<"端口的www服务!请检查端口和ip\n";
+        cout<<"无法连接至目标主机"<<port<<"端口的http服务!请检查端口和ip\n";
         return 0;
     }
     //cout<<"ok\n";
     if (n==2)
     {
-        cout<<"远程www文件列表:\n";
-        for (int i=0; i<www_dir->content.size(); i++)
+        cout<<"远程http文件列表:\n";
+        for (int i=0; i<http_dir->content.size(); i++)
         {
-            cout<<www_dir->content[i]->name<<endl;
+            cout<<http_dir->content[i]->name<<endl;
         }
     }else{
         string name=t[2];
-        file *from=www_dir->locate_file(name);
+        file *from=http_dir->locate_file(name);
         if (from)
         {
             cout<<"正在将远程文件"<<name<<"复制到本地/data文件夹...\n";
-            reply.computer->write_log("www",c->netnode->ip+" 远程拷贝了文件 "+from->name);
+            reply.computer->write_log("http",c->netnode->ip+" 远程拷贝了文件 "+from->name);
             delay(3);
             void *to=malloc(from->size);
             memcpy(to,from->data,from->size);

@@ -430,7 +430,7 @@ public:
     
     int get_port(string name);//返回某个端口的端口号。如果没有这个端口，就返回-1
     void open_port(string name, int port);//开放一个端口
-    FileSystem::dir* get_www_dir(int port);//返回www文件夹。没有就返回NULL
+    FileSystem::dir* get_http_dir(int port);//返回http文件夹。没有就返回NULL
     
     //一堆内置的命令
     int dc(int i,const char **t);

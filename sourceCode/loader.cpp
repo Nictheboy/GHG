@@ -185,7 +185,6 @@ void init_new_game()
     
     temp=new Computer("192.168.0.2");
     tempnode->add_node(temp->netnode,false);
-
     
     temp=new Computer(COMPUTER1);
     Internet->add_node(temp->netnode);
@@ -197,9 +196,9 @@ void init_new_game()
     temp=new Computer(COMPUTER2);
     Internet->add_node(temp->netnode);
     temp->style=telnet;
-    temp->open_port("www",21);
-    temp->root->add_new_dir("www");
-    temp->locate_dir("/www")->add_file(new file("passguesser.exe",&exe_passguesser));
+    temp->open_port("http",21);
+    temp->root->add_new_dir("web");
+    temp->locate_dir("/web")->add_file(new file("passguesser.exe",&exe_passguesser));
     if (DEBUG_FLAG)
     {
         temp->password="123456";

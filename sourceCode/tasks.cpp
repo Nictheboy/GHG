@@ -274,14 +274,14 @@ void task_8_1()
     }
     else
     {
-        FileSystem::dir * www_dir = reply.computer->get_www_dir(21);
-        if (www_dir == NULL)
+        FileSystem::dir * http_dir = reply.computer->get_http_dir(21);
+        if (http_dir == NULL)
         {
             cout<<"task_8_1():主机服务已关闭"<<endl;
         }
         else
         {
-            www_dir->add_file(new FileSystem::file("sniffer.exe",&exe_sniffer));
+            http_dir->add_file(new FileSystem::file("sniffer.exe",&exe_sniffer));
         }
     }
 

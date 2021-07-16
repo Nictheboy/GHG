@@ -430,7 +430,7 @@ public:
     
     int get_port(string name);//返回某个端口的端口号。如果没有这个端口，就返回-1
     void open_port(string name, int port);//开放一个端口
-    FileSystem::dir* get_www_dir(int port);//返回www文件夹。没有就返回NULL
+    FileSystem::dir* get_http_dir(int port);//返回http文件夹。没有就返回NULL
     
     //一堆内置的命令
     int dc(int i,const char **t);
@@ -1152,7 +1152,7 @@ void id2ptr::show()
 /*
  *文件名:   common_exe.cpp
  *作者:     Nictheboy
- *内容:     实现普通exe
+ *内容:     实现游戏中的大部分exe
  *
  *最后一次修改: 2020/5/7
  */
@@ -1160,63 +1160,70 @@ void id2ptr::show()
 #include "hackgame.h"
 #endif
 
-//实现普通的exe
-int exe_wget(int n,const char **t, Computer *c)//exe暂时没有注释，请直接看下面的init函数和Computer类构造函数及主函数
+/*
+本代码用途是实现游戏中的大部分exe
+每个函数实现一个exe程序
+命名规则是这样的：int exe_wget(int n,const char **t, Computer *c)实现wget.exe,其他函数以此类推
+参数的解释：
+n是命令行传入参数的个数，相当于argn；t是指向参数列表的指针，相当于argv
+这两个与c语言里main（）参数的意义相同
+c指向启动这个程序的那台计算机
+*/
+
+int exe_wget(int n,const char **t, Computer *c)//实现wget.exe
 {
-    using namespace FileSystem;
-    
-    //data\wget.exe 178.53.100.24
-    //cout<<"wget\n";
-    if (n<2)
-    {
+    using namespace FileSystem;//需要使用文件系统
+    if (n<2){//参数个数小于2
         cout<<"缺少参数！使用方法：\n";
-        cout<<"wget [IP](:端口)           显示远程主机上可以通过www下载的文件列表\n";
+        cout<<"wget [IP](:端口)           显示远程主机上可以通过http下载的文件列表\n";
         cout<<"wget [IP](:端口)  [文件名] 从远处主机上下载文件\n";
         return 0;
     }
-    string ip;
-    int port;
-    //cout<<"ok\n";
-    try
-    {
+    string ip;//输入的ip
+    int port;//输入的端口
+    try{//使用class ipport_cutter将输入的ip和端口分开
+        //如果没有输入端口，该类也会正常工作
         ipport_cutter cutter(t[1],21);
         ip=cutter.ip;
         port=cutter.port;
     }
-    catch(string)
+    catch(string s)
     {
+        cout<<"输入的参数不符合语法！"<<s<<endl;
         return 0;
     }
-    //cout<<ip<<endl;
     connection_reply reply=c->netnode->connect(ip,"http");
-    if (reply.computer == nullptr)
+    //这行是网络更新之后加入的
+    //c->netnode是启动wget的计算机对应的网络节点
+    //调用其connect方法，其实就是从c出发寻找计算机
+    if (reply.computer == nullptr)//没找着。说明输入的ip不对
     {
         cout<<"定位目标主机失败。请检查IP地址是否正确。\n";
         return 0;
     }
     
-    dir *www_dir=reply.computer->get_www_dir(port);
-    if (!www_dir)
+    dir *http_dir=reply.computer->get_http_dir(port);
+    if (!http_dir)
     {
         delay(2);
-        cout<<"无法连接至目标主机"<<port<<"端口的www服务!请检查端口和ip\n";
+        cout<<"无法连接至目标主机"<<port<<"端口的http服务!请检查端口和ip\n";
         return 0;
     }
     //cout<<"ok\n";
     if (n==2)
     {
-        cout<<"远程www文件列表:\n";
-        for (int i=0; i<www_dir->content.size(); i++)
+        cout<<"远程http文件列表:\n";
+        for (int i=0; i<http_dir->content.size(); i++)
         {
-            cout<<www_dir->content[i]->name<<endl;
+            cout<<http_dir->content[i]->name<<endl;
         }
     }else{
         string name=t[2];
-        file *from=www_dir->locate_file(name);
+        file *from=http_dir->locate_file(name);
         if (from)
         {
             cout<<"正在将远程文件"<<name<<"复制到本地/data文件夹...\n";
-            reply.computer->write_log("www",c->netnode->ip+" 远程拷贝了文件 "+from->name);
+            reply.computer->write_log("http",c->netnode->ip+" 远程拷贝了文件 "+from->name);
             delay(3);
             void *to=malloc(from->size);
             memcpy(to,from->data,from->size);
@@ -2371,11 +2378,18 @@ int Computer::install(int n, const char* c[])
 }
 
 //获取公开共享的文件夹
-FileSystem::dir* Computer::get_www_dir(int port)
+FileSystem::dir* Computer::get_http_dir(int port)
 {
-    if (port == get_port("www"))//检测端口
+    if (port == get_port("http")||port == get_port("www"))//检测端口
+    //www是老版游戏中对http的称呼
     {
-        return locate_dir("/www");
+        FileSystem::dir* http = locate_dir("/web");
+        FileSystem::dir* www = locate_dir("/www");
+        if (www){//解决兼容性问题
+            return www;
+        }else{
+            return http;
+        }
     }
     else {
         return NULL;
@@ -3109,14 +3123,14 @@ void task_8_1()
     }
     else
     {
-        FileSystem::dir * www_dir = reply.computer->get_www_dir(21);
-        if (www_dir == NULL)
+        FileSystem::dir * http_dir = reply.computer->get_http_dir(21);
+        if (http_dir == NULL)
         {
             cout<<"task_8_1():主机服务已关闭"<<endl;
         }
         else
         {
-            www_dir->add_file(new FileSystem::file("sniffer.exe",&exe_sniffer));
+            http_dir->add_file(new FileSystem::file("sniffer.exe",&exe_sniffer));
         }
     }
 
@@ -4341,7 +4355,6 @@ void init_new_game()
     
     temp=new Computer("192.168.0.2");
     tempnode->add_node(temp->netnode,false);
-
     
     temp=new Computer(COMPUTER1);
     Internet->add_node(temp->netnode);
@@ -4353,9 +4366,9 @@ void init_new_game()
     temp=new Computer(COMPUTER2);
     Internet->add_node(temp->netnode);
     temp->style=telnet;
-    temp->open_port("www",21);
-    temp->root->add_new_dir("www");
-    temp->locate_dir("/www")->add_file(new file("passguesser.exe",&exe_passguesser));
+    temp->open_port("http",21);
+    temp->root->add_new_dir("web");
+    temp->locate_dir("/web")->add_file(new file("passguesser.exe",&exe_passguesser));
     if (DEBUG_FLAG)
     {
         temp->password="123456";
@@ -5710,11 +5723,11 @@ int exe_mail(int n,const char **t,Computer *c)
 
         你可以输入命令wget测试，现在它已经在你电脑上了。
 
-        下面给你介绍一下如何使用这个软件。使用它，你可以从一个www服务器上下载那里公开的文件。如果你输入 wget [服务器的IP] ，你可以看到服务器上所有公开的文件。
+        下面给你介绍一下如何使用这个软件。使用它，你可以从一个http服务器上下载那里公开的文件。如果你输入 wget [服务器的IP] ，你可以看到服务器上所有公开的文件。
 
         如何使用wget下载文件？你需要这样使用它：wget [服务器的IP] [想下载的文件名]
 
-        我有一台www服务器，它的IP是178.53.100.24。现在上面有一个程序，叫passguesser.exe，它对你的黑客生涯非常非常重要。请你用wget把它下载下来。
+        我有一台http服务器，它的IP是178.53.100.24。现在上面有一个程序，叫passguesser.exe，它对你的黑客生涯非常非常重要。请你用wget把它下载下来。
 
         安装成功后，我会再给你发一封邮件。
 
@@ -5732,11 +5745,11 @@ int exe_mail(int n,const char **t,Computer *c)
         cout<<"\n";
         cout<<"你可以输入命令wget测试，现在它已经在你电脑上了。\n";
         cout<<"\n";
-        cout<<"下面给你介绍一下如何使用这个软件。使用它，你可以从一个www服务器上下载那里公开的文件。如果你输入 wget [服务器的IP] ，你可以看到服务器上所有公开的文件。\n";
+        cout<<"下面给你介绍一下如何使用这个软件。使用它，你可以从一个http服务器上下载那里公开的文件。如果你输入 wget [服务器的IP] ，你可以看到服务器上所有公开的文件。\n";
         cout<<"\n";
         cout<<"如何使用wget下载文件？你需要这样使用它：wget [服务器的IP] [想下载的文件名]\n";
         cout<<"\n";
-        cout<<"我有一台www服务器，它的IP是178.53.100.24。现在上面有一个程序，叫passguesser.exe，它对你的黑客生涯非常非常重要。请你用wget把它下载下来。\n";
+        cout<<"我有一台http服务器，它的IP是178.53.100.24。现在上面有一个程序，叫passguesser.exe，它对你的黑客生涯非常非常重要。请你用wget把它下载下来。\n";
         cout<<"\n";
         cout<<"安装成功后，我会再给你发一封邮件。\n";
         cout<<"\n";
