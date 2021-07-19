@@ -2,8 +2,7 @@
 #include "hackgame.h"
 #endif
 
-int exe_mail(int n,const char **t,Computer *c)
-{
+int exe_mail(int n,const char **t,Computer *c){
     cout<<"Hmail邮件系统\n-----------------------------\n";
     int number=task_number;
     if (n>1)
@@ -248,7 +247,14 @@ int exe_mail(int n,const char **t,Computer *c)
         cout<<"     记得删除日志，包括sniffer.log,还有，记得关闭sniffer.exe(使用指令sniffer stop)，它会暴露你的行踪\n\n";
         cout<<"                                          nic\n";
         break;
-     case 10:
+     case 9:
+        cout<<localhost->username<<"，您好\n\n";
+        cout<<"恭喜您，您成功完成了这一关！这是非常复杂的一关，我对您现在的能力十分有信心，所有我决定以后会直接让一些需要帮助的人给你写邮件求助。\n\n";
+        cout<<"不过这需要保证通信的安全。所以我做了一个加密的专用邮件接收器，需要你下载下来安装一下。你用wget到"<<COMPUTER2<<"那里下载一个mail2.exe\n\n";
+        cout<<"等你安装完之后我会用它给你发一些教程。\n\n";
+        cout<<"                                          nic\n";
+        break;
+        /*
         cout<<localhost->username<<"，您好\n\n";
         cout<<"您成功完成了这一关！\n\n";
         cout<<"您真是太厉害了，可惜游戏没有关卡了，不然我相信你会是GHG最优秀的玩家。\n\n";
@@ -264,7 +270,9 @@ int exe_mail(int n,const char **t,Computer *c)
         cout<<"                                      游戏作者：\n\n";
         cout<<"                                      Nictheboy\n\n";
         break;
-    case 9:
+        */
+        /*
+    case 10:
         cout<<localhost->username<<"，您好\n\n";
         cout<<"我忘了把一个电脑上的日志删除了。请你到那台电脑上把日志删除。请迅速完成\n\n";
         cout<<"有关信息：\n\n";
@@ -272,6 +280,7 @@ int exe_mail(int n,const char **t,Computer *c)
         cout<<"     目标文件:所有的日志文件\n\n";
         cout<<"                                          nic\n";
         break;
+        */
     default:
         cout<<"内部错误:关卡不存在!!!\n";
     }

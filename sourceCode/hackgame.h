@@ -61,7 +61,7 @@ V1.4.0	增加了跳关功能（通过内置了若干存档实现）
 #endif
 
 //#define TEST_WINDOWS//用于在Linux上测试Windows模式
-//#define NO_DELAY//无延时，测试用
+#define NO_DELAY//无延时，测试用
 #define FOR_XES//用于生成单文件代码，即文件code.cpp
 
 #ifdef DEBUG//是否是调试模式
@@ -183,6 +183,7 @@ namespace FileSystem
         file(string n, size_t s, void *d);//按名称，大小，数据生成文件
         file(string n, string s);//生成一个包含一串字符的文件
         file(string n, exe_adr adr);//生成一个指向某函数的exe文件
+        ~file();//析构函数，会free掉data
         bool run_exe(int i,const char **strlist,Computer* c);//执行这个文件，如果这是一个exe格式的文件。执行成功与否与文件名是不是.exe结尾 无 关 ！
     }; 
     
@@ -197,6 +198,7 @@ namespace FileSystem
         vector<dir *>subdir;//包含的子目录
         //所以你看，dir类其实是一个树节点
         dir(string n);//根据目录名生成一个目录，空的（废话）
+        ~dir();//析构函数，会递归地析构所有子文件夹和文件
         bool add_file(file *f);//添加一个文件。注意，只是把指针放进来，并不复制文件！（所以我不推荐调用这个函数）
         bool add_dir(dir *d);//添加一个目录。不复制。不推荐
         bool delete_file(string filename);//删除一个文件。注意！只删除指针，文件还存在！
@@ -207,7 +209,7 @@ namespace FileSystem
         dir* locate_dir(string s)const;//定位一个文件夹。字符串可以是文件夹名如abc，也可以是目录加文件夹名如abc/abc。注意，结尾没有/
         bool add_new_txt(string name, string content);//加入一个新的txt。先new一个txt在加进来。
         bool add_new_dir(string name);//加入一个新的。先new一个txt在加进来。
-        dir* turn_file_ps_into_dir_ps(string fp);//这个就是传入一个文件位置，如abc/def.txt，返回一个目录名，如abc
+        dir* turn_file_ps_into_dir_ps(string fp);//这个就是传入一个文件位置，如abc/def.txt，返回一个目录
         void show(int format=0);//打印这个文件夹的结构。这就是tree.exe调用的那个函数
     };
 }
@@ -399,6 +401,8 @@ public:
     FileSystem::dir *root;//根目录
     FileSystem::dir* locate_dir(string path);//定位文件夹。/打头则从根目录开始，支持上级目录
     FileSystem::file* locate_file(string path);//定位文件。/打头则从根目录开始，支持上级目录
+    bool delete_file(string path);//删除文件。/打头则从根目录开始，支持上级目录
+    bool delete_dir(string path);//删除文件夹。/打头则从根目录开始，支持上级目录
     
     Computer(string ip);//用于建立新游戏。进行一系列初始化
     Computer();//用于从文件加载，只进行很少的初始化
@@ -600,6 +604,7 @@ int exe_passguesser(int i,const char **t, Computer *c);
 int exe_portscan(int i,const char *t[], Computer *c);
 int exe_hvm(int i,const char *t[], Computer *c);
 int exe_mail(int n,const char **t,Computer *c);
+int exe_mail2(int n,const char **t,Computer *c);
 int exe_telnet(int i,const char **t,Computer *c);
 int exe_tree(int i,const char **t,Computer *c);
 int exe_ipconfig(int i,const char **t,Computer *c);
@@ -666,4 +671,26 @@ public:
 //不过各个文件里有的地方还有注释
 //一半以上的注释是2021年7月12日写的
 //我是故意写的特别啰嗦的:)
+
+class mailManager{
+//实现邮件管理，是mail.exe的组成部分。代码见mail.cpp
+private:
+    Computer * computerBinded;//绑定的电脑
+public:
+    class mail{//一个类，邮件
+    public:
+        string subject,receiver,sender,content;
+        mail(string subject,string receiver,string sender,string content);
+        mail(FileSystem::file * f);
+    };
+    mailManager(Computer * c);//构造函数
+    void showContentOf(int index);//显示某个邮件的内容
+    void showList();//显示邮件列表
+    mail getContentOf(int index);//获取某个邮件的内容
+    vector<string> getList();//获取邮件列表
+    void sendMailToSelf(mail m);
+};
+
+void send_mail(string subject,string sender,string content);//向玩家发送邮件
+
 #endif

@@ -315,6 +315,124 @@ FileSystem::file* Computer::locate_file(string path)
     return temp->locate_file(listed_ps[listed_ps.size() - 1]);
 }
 
+bool Computer::delete_file(string path){//删除文件。/打头则从根目录开始，支持上级目录
+    //和上面类似
+    vector<string> listed_ps = split(path, "/", true);
+    FileSystem::dir* temp;
+    int i;
+    if (listed_ps.size() == 0)
+    {
+        return false;
+    }
+    if (listed_ps.size() == 1)
+    {
+        temp = dir_now;
+    }
+    else
+    {
+        if (listed_ps[0] == "")
+        {
+            temp = root;
+            i = 1;
+        }
+        else
+        {
+            temp = dir_now;
+            i = 0;
+        }
+    }
+    for (;i < listed_ps.size() - 1;i++)
+    {
+        if (listed_ps[i] == "." || listed_ps[i] == "..")
+        {
+            //cout<<"OK";
+            if (!(temp->father))
+            {
+                return false;
+            }
+            temp = temp->father;
+            //cout<<"OK";
+        }
+        else
+        {
+            //cout<<dir_now->search_subdir(listed_ps[i]);
+            //cout<<"OK";
+            int ps = temp->search_subdir(listed_ps[i]);
+            if (ps == -1)
+            {
+                return false;
+            }
+            else
+            {
+                temp = temp->subdir[ps];
+            }
+            //cout<<"OK";
+        }
+    }
+    //上面相当于找到了文件夹，下面是删除文件
+    FileSystem::file * f = temp->locate_file(listed_ps[listed_ps.size() - 1]);
+    if (!f){
+        return false;
+    }
+    temp->delete_file(f->name);
+    //delete f->data;
+    delete f;
+    return true;
+}
+bool Computer::delete_dir(string path){//删除文件夹。/打头则从根目录开始，支持上级目录
+    vector<string> listed_ps = split(path, "/", true);//分割
+    FileSystem::dir* temp;
+    int i=0;
+    if (listed_ps.size() == 0)//path是空则返回当前目录
+    {
+        return false;
+    }
+    else
+    {
+        if (listed_ps[0] == "")//如果路径是斜杠打头
+        {
+            temp = root;//从根目录开始
+            i = 1;//跳过第一项
+        }
+        else
+        {
+            temp = dir_now;//从当前目录开始
+            i = 0;
+        }
+    }
+    for (/*前面设置过i了*/;i < listed_ps.size();i++)
+    {
+        if (listed_ps[i] == "." || listed_ps[i] == "..")//假如是点
+        {
+            if (!(temp->father))//没有上级目录则失败
+            {
+                return false;
+            }
+            temp = temp->father;//到上级目录
+        }
+        else
+        {
+            int ps = temp->search_subdir(listed_ps[i]);//查找目录的索引
+            if (ps == -1)//-1表示没找着
+            {
+                return false;//失败
+            }
+            else
+            {
+                temp = temp->subdir[ps];//到下一个目录
+            }
+        }
+    }
+    //return temp;//返回目录指针
+    FileSystem::dir * d = temp;
+    if (!(d->father)){
+        return false;
+    }
+    (d->father)->delete_dir(d->name);
+    delete d;
+    return true;
+}
+
 //显示当前目录
 int Computer::pwd(int i, const char** t)
 {
@@ -430,7 +548,11 @@ int Computer::del(int n, const char* c[])
         cout << "缺少参数!语法:del [删除的文件或文件夹名]\n";
         return 0;
     }
-    
+    if(!(delete_file(c[1])||delete_dir(c[1]))){
+        cout << "文件或文件夹不存在!\n";
+    }
+
+    /*
     if (!(dir_now->delete_file(c[1]) || dir_now->delete_dir(c[1])))
     {
         class dir* fath = dir_now->turn_file_ps_into_dir_ps(c[1]);
@@ -445,10 +567,12 @@ int Computer::del(int n, const char* c[])
         {
             cout << "文件或文件夹不存在!\n";
         }
+        
     }
+    */
     /*
     dir * d = locate_dir (dir_now->turn_file_ps_into_dir_ps (c[1]));
-    file * f - locate_file (c[1]);
+    file * f = locate_file (c[1]);
     if ((!d)||(!f)){
         cout << "文件或文件夹不存在!" << endl;
     }
@@ -870,8 +994,10 @@ void Computer::run( bool need_login/*是否需要登陆*/,
                     cout << input << "不是任何内部或外部指令！！输入help获取指令列表\n";
                 }
             }
-            catch (...)
-            {
+            catch (string s){
+                cout<<BG_RED<<"程序抛出异常:"<<s<<RESET<<endl;
+            }
+            catch (...){
                 cout<<BG_RED<<"执行命令'"<<input<<"'的时候发生了未处理的异常!"<<RESET<<endl;
             }
         }

@@ -26,6 +26,10 @@ FileSystem::file::file( string n, exe_adr adr )
 	exe_adr *e = (exe_adr *) ( (char *) data + 3);
 	*e = adr;
 }
+FileSystem::file::~file()
+{
+	free(data);
+}
 bool FileSystem::file::run_exe( int i, const char **c, Computer *computer)
 {
 	char *tmp = (char *) data;
@@ -38,7 +42,7 @@ bool FileSystem::file::run_exe( int i, const char **c, Computer *computer)
 		{
 			return(true);
 		}else{
-			cout << "返回值错误！\n";
+			cout << "exe文件"<<this->name<<"未正常退出，返回值"<<ret<<endl;
 			return(false);
 		}
 	}else{
@@ -54,6 +58,16 @@ FileSystem::dir::dir( string n )
 	name		= n;
 }
 
+FileSystem::dir::~dir()
+{
+	for (int i=0; i<content.size(); i++){
+		delete content[i];
+	}
+	for (int i=0; i<subdir.size(); i++){
+		delete subdir[i];
+	}
+}
+
 bool FileSystem::dir::add_file( file *f )
 {
     //cout<<"Ok";
@@ -65,8 +79,8 @@ bool FileSystem::dir::add_file( file *f )
 	*/
 	if ( f == NULL )
 	{
-		cout << "内部错误：文件为NULL";
-		return(false);
+		throw "FileSystem::dir::add_file():文件为NULL";
+		//return(false);
 	}
 	//cout<<"Ok";
 	//cout<<content.size();
@@ -75,8 +89,9 @@ bool FileSystem::dir::add_file( file *f )
 	{
 		if ( content[i]->name == f->name )
 		{
-			cout << "文件已存在创建!\n";
-			return(false);
+			throw "FileSystem::dir::add_file():文件"+f->name+"已存在创建!";
+			//cout << "文件已存在创建!\n";
+			//return(false);
 		}
 	}
 	content.resize(content.size() + 1);
@@ -97,15 +112,16 @@ bool FileSystem::dir::add_dir( dir *d )
 	*/
 	if ( d == NULL )
 	{
-		cout << "内部错误：文件夹为NULL";
-		return(false);
+		throw "FileSystem::dir::add_dir():传入文件夹为NULL";
+		//cout << "内部错误：文件夹为NULL";
+		//return(false);
 	}
 	for ( int i = 0; i < subdir.size(); i++ )
 	{
 		if ( subdir[i]->name == d->name )
 		{
-			cout << "文件夹已存在创建!\n";
-			return(false);
+			throw "FileSystem::dir::add_dir():文件夹"+d->name+"已经存在";
+			//return(false);
 		}
 	}
 	//subdir_number++;

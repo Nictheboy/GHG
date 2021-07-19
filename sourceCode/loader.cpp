@@ -34,7 +34,7 @@ void loadgame()
             cout<<"6.第6关"<<endl;
             cout<<"7.第7关"<<endl;
             cout<<"8.第8关"<<endl;
-            cout<<"9.通关邮件"<<endl;
+            cout<<"9.[新]第9关"<<endl;
             getline(cin,a);
             if (a == "1")
             {
@@ -174,7 +174,7 @@ void init_new_game()
     //新建一个主机
     temp=new Computer("192.168.0.0");
     tempnode->add_node(temp->netnode,false);//连接这个主机的节点
-    temp->root->add_new_txt("1.txt","123");//创建文件
+    //temp->root->add_new_txt("1.txt","123");//创建文件
     temp->event_before_input=&task_1_1;//绑定设置剧情函数
     temp->name="localhost";
 //    temp->locate_dir("/bin")->add_file(new file("mujs.exe",&exe_mujs));
