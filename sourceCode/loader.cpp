@@ -34,7 +34,9 @@ void loadgame()
             cout<<"6.为了更好的工具出击！(I)"<<endl;
             cout<<"7.为了更好的工具出击！(II)"<<endl;
             cout<<"8.啊！代码"<<endl;
-            cout<<"9.[新]第9关"<<endl;
+            //cout<<"9.[新]第9关"<<endl;
+            cout<<"9.升级你的邮件系统"<<endl;
+            cout<<"10.删除那个该死的玩意"<<endl;
             getline(cin,a);
             if (a == "1")
             {
@@ -69,7 +71,7 @@ void loadgame()
             {
                 encoded_saving = saving_task8;
             }
-            else if (a == "9")
+            else if (a == "9" || a == "10")
             {
                 encoded_saving = saving_end;
             }
@@ -81,6 +83,10 @@ void loadgame()
             //cout<<decoding(encoded_saving)<<endl<<endl;
             //cout<<decoding(encoded_saving);
             load_game_from_string(encoded_saving);
+            if (a == "10"){
+                jump_through_task(9);
+            }
+
             if (!skip_set_username)
             {
                 cout<<"请您为自己起一个名字:";

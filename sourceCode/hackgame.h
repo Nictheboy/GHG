@@ -571,7 +571,7 @@ DataTree::data_node* up_date_game(DataTree::data_node *root,int old_version);//�
 bool check_and_autosave();//判断是否需要自动保存并执行自动保存。进行了保存返回true，没进行保存返回false
 void init_preload_ptr_table();//初始化指针表。见preload_ptr_table的注释
 void add_preload_ptr(void* ptr, string name);//加入新的指针
-//void add_mail(string mail);
+
 
 
 
@@ -597,6 +597,8 @@ void task_8_2();
 void task_9_1();
 void task_9_2();
 //这堆函数的指针都放到preload_ptr_table里面。见preload_ptr_table的注释
+
+void jump_through_task(int index);//跳过某关(index>=9)
 
 //一堆exe的定义
 int exe_wget(int n,const char **t, Computer *c);

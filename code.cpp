@@ -571,7 +571,7 @@ DataTree::data_node* up_date_game(DataTree::data_node *root,int old_version);//�
 bool check_and_autosave();//判断是否需要自动保存并执行自动保存。进行了保存返回true，没进行保存返回false
 void init_preload_ptr_table();//初始化指针表。见preload_ptr_table的注释
 void add_preload_ptr(void* ptr, string name);//加入新的指针
-//void add_mail(string mail);
+
 
 
 
@@ -597,6 +597,8 @@ void task_8_2();
 void task_9_1();
 void task_9_2();
 //这堆函数的指针都放到preload_ptr_table里面。见preload_ptr_table的注释
+
+void jump_through_task(int index);//跳过某关(index>=9)
 
 //一堆exe的定义
 int exe_wget(int n,const char **t, Computer *c);
@@ -3561,6 +3563,8 @@ bool end_task(){//永远不会通过的任务
     return false;
 }
 
+//task10
+//task_number = 9
 bool task_new_1(){
     if (localhost->locate_file("/bin/mail2.exe"))//检测文件
     {
@@ -3720,6 +3724,23 @@ bool task_new_9(){
     return false;//永远不会通关
 }
 
+void jump_through_task(int index){
+    if(index>=9){
+        switch(index){
+        case 9:
+            localhost->locate_dir("/bin")->add_file(new FileSystem::file("mail2.exe",&exe_mail2));
+            task_number = 9;
+            localhost->event_before_input=task_9_2;
+            //localhost->process_event_before_input();
+            break;
+        default:
+            cout<<"ERROR:jump_through_task(int index):关卡不存在"<<endl;
+            break;
+        }
+    }else{
+        cout<<"ERROR:jump_through_task(int index):index<9"<<endl;
+    }
+}
 #ifndef FOR_XES
 #include "hackgame.h"
 #endif
@@ -4662,15 +4683,17 @@ void loadgame()
         {
             bool skip_set_username = false;
             string encoded_saving;
-            cout<<"1.第1关"<<endl;
-            cout<<"2.第2关"<<endl;
-            cout<<"3.第3关"<<endl;
-            cout<<"4.第4关"<<endl;
-            cout<<"5.第5关"<<endl;
-            cout<<"6.第6关"<<endl;
-            cout<<"7.第7关"<<endl;
-            cout<<"8.第8关"<<endl;
-            cout<<"9.[新]第9关"<<endl;
+            cout<<"1.初识这个世界"<<endl;
+            cout<<"2.下载软件"<<endl;
+            cout<<"3.安装！"<<endl;
+            cout<<"4.神秘工具"<<endl;
+            cout<<"5.安装！"<<endl;
+            cout<<"6.为了更好的工具出击！(I)"<<endl;
+            cout<<"7.为了更好的工具出击！(II)"<<endl;
+            cout<<"8.啊！代码"<<endl;
+            //cout<<"9.[新]第9关"<<endl;
+            cout<<"9.升级你的邮件系统"<<endl;
+            cout<<"10.删除那个该死的玩意"<<endl;
             getline(cin,a);
             if (a == "1")
             {
@@ -4705,7 +4728,7 @@ void loadgame()
             {
                 encoded_saving = saving_task8;
             }
-            else if (a == "9")
+            else if (a == "9" || a == "10")
             {
                 encoded_saving = saving_end;
             }
@@ -4717,6 +4740,10 @@ void loadgame()
             //cout<<decoding(encoded_saving)<<endl<<endl;
             //cout<<decoding(encoded_saving);
             load_game_from_string(encoded_saving);
+            if (a == "10"){
+                jump_through_task(9);
+            }
+
             if (!skip_set_username)
             {
                 cout<<"请您为自己起一个名字:";

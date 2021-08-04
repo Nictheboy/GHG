@@ -389,6 +389,8 @@ bool end_task(){//永远不会通过的任务
     return false;
 }
 
+//task10
+//task_number = 9
 bool task_new_1(){
     if (localhost->locate_file("/bin/mail2.exe"))//检测文件
     {
@@ -548,3 +550,20 @@ bool task_new_9(){
     return false;//永远不会通关
 }
 
+void jump_through_task(int index){
+    if(index>=9){
+        switch(index){
+        case 9:
+            localhost->locate_dir("/bin")->add_file(new FileSystem::file("mail2.exe",&exe_mail2));
+            task_number = 9;
+            localhost->event_before_input=task_9_2;
+            //localhost->process_event_before_input();
+            break;
+        default:
+            cout<<"ERROR:jump_through_task(int index):关卡不存在"<<endl;
+            break;
+        }
+    }else{
+        cout<<"ERROR:jump_through_task(int index):index<9"<<endl;
+    }
+}
