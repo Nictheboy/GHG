@@ -26,14 +26,14 @@ void loadgame()
         {
             bool skip_set_username = false;
             string encoded_saving;
-            cout<<"1.第1关"<<endl;
-            cout<<"2.第2关"<<endl;
-            cout<<"3.第3关"<<endl;
-            cout<<"4.第4关"<<endl;
-            cout<<"5.第5关"<<endl;
-            cout<<"6.第6关"<<endl;
-            cout<<"7.第7关"<<endl;
-            cout<<"8.第8关"<<endl;
+            cout<<"1.初识这个世界"<<endl;
+            cout<<"2.下载软件"<<endl;
+            cout<<"3.安装！"<<endl;
+            cout<<"4.神秘工具"<<endl;
+            cout<<"5.安装！"<<endl;
+            cout<<"6.为了更好的工具出击！(I)"<<endl;
+            cout<<"7.为了更好的工具出击！(II)"<<endl;
+            cout<<"8.啊！代码"<<endl;
             cout<<"9.[新]第9关"<<endl;
             getline(cin,a);
             if (a == "1")
