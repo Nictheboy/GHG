@@ -220,6 +220,7 @@ void init_new_game()
         localhost->locate_dir("/bin")->add_file(new file("wget.exe",&exe_wget));
         localhost->locate_dir("/bin")->add_file(new file("tracer.exe",&exe_tracer));
         //localhost->locate_dir("/bin")->add_file(new file("sniffer.exe",&exe_sniffer));
+        localhost->locate_dir("/bin")->add_file(new file("style.exe",&exe_style));
         localhost->event_before_input=&task_8_1;
     }else{
         localhost->event_before_input=&task_1_1;

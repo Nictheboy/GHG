@@ -51,18 +51,18 @@ V1.4.0	增加了跳关功能（通过内置了若干存档实现）
 #define COMPUTER3 "117.51.143.120"
 #define PROGRAM_INFO "黑客游戏 Release V1.4.0"//游戏的版本信息
 #define SAVING_VERSION 4//存档版本
-//#define DEBUG//调试标志，打开这个后会执行一些代码，直接测试最后一关
+#define DEBUG//调试标志，打开这个后会执行一些代码，直接测试最后一关
 //#define MAKE_SAVINGS//每进入一关就自动保存一个存档，调试用
+
+//#define TEST_WINDOWS//用于在Linux上测试Windows模式
+#define NO_DELAY//无延时，测试用
+#define FOR_XES//用于生成单文件代码，即文件code.cpp
 
 #if defined(_WIN32) || defined(_WIN64)//判断是否是windows
 #define WINDOWS_OS//Windows模式
 #else
 #define LINUX_OS//Linux模式，适合在linux上编译
 #endif
-
-//#define TEST_WINDOWS//用于在Linux上测试Windows模式
-#define NO_DELAY//无延时，测试用
-#define FOR_XES//用于生成单文件代码，即文件code.cpp
 
 #ifdef DEBUG//是否是调试模式
 #define DEBUG_FLAG true//代码中有的地方会写if(DEBUG_FLAG){..}之类的代码
@@ -545,6 +545,7 @@ extern Computer *localhost;//一个指针，指向本地主机。用于方便访
 //两种样式
 extern Style basic_style;//这是本机上的style。存于global_objects.cpp
 extern Style telnet;//telnet时的style。存于global_objects.cpp
+extern Style style_1;
 
 extern string default_filename;//保存时的默认文件名。也可以用savegame filename指令保存到别的文件
 extern bool autosave;//是否自动保存
@@ -615,6 +616,7 @@ int exe_myexe(int i,const char **t,Computer *c);
 int exe_sniffer(int argc, const char *argv[], Computer *sender);
 //int exe_mujs(int argc, const char *argv[], Computer *sender);
 int exe_undefined(int argc, const char *argv[], Computer *sender);
+int exe_style(int argc, const char *argv[], Computer *sender);
 //这堆函数的指针都放到preload_ptr_table里面。见preload_ptr_table的注释
 
 void logo();//显示logo

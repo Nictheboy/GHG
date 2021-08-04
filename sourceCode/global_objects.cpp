@@ -31,6 +31,16 @@ Style telnet(   "login:",
                 ">",
                 "#");
 
+Style style_1( 	    "请输入用户名:",
+                    "请输入密码:",
+                    "",
+                    "密码错误，请重试!\n",
+                    "登陆失败\n",
+                    string(RED)+"[",
+                    string("@")+GREEN,
+                    string(RED)+"]"+RESET,
+                    "#");
+
 string default_filename = "autobackup.tree";//保存时的默认文件名
 bool autosave = true;//是否自动保存
 

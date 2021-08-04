@@ -44,4 +44,5 @@ void  init_preload_ptr_table()
     add_preload_ptr((void*)&exe_sniffer,"exe_sniffer");
     add_preload_ptr((void*)&exe_mail2,"exe_mail2");
 //        fw.write(table.getid((void*)&exe_mujs),"exe_mujs");
+    add_preload_ptr((void*)&exe_style,"exe_style");
 }

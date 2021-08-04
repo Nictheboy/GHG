@@ -51,18 +51,18 @@ V1.4.0	增加了跳关功能（通过内置了若干存档实现）
 #define COMPUTER3 "117.51.143.120"
 #define PROGRAM_INFO "黑客游戏 Release V1.4.0"//游戏的版本信息
 #define SAVING_VERSION 4//存档版本
-//#define DEBUG//调试标志，打开这个后会执行一些代码，直接测试最后一关
+#define DEBUG//调试标志，打开这个后会执行一些代码，直接测试最后一关
 //#define MAKE_SAVINGS//每进入一关就自动保存一个存档，调试用
+
+//#define TEST_WINDOWS//用于在Linux上测试Windows模式
+#define NO_DELAY//无延时，测试用
+#define FOR_XES//用于生成单文件代码，即文件code.cpp
 
 #if defined(_WIN32) || defined(_WIN64)//判断是否是windows
 #define WINDOWS_OS//Windows模式
 #else
 #define LINUX_OS//Linux模式，适合在linux上编译
 #endif
-
-//#define TEST_WINDOWS//用于在Linux上测试Windows模式
-#define NO_DELAY//无延时，测试用
-#define FOR_XES//用于生成单文件代码，即文件code.cpp
 
 #ifdef DEBUG//是否是调试模式
 #define DEBUG_FLAG true//代码中有的地方会写if(DEBUG_FLAG){..}之类的代码
@@ -545,6 +545,7 @@ extern Computer *localhost;//一个指针，指向本地主机。用于方便访
 //两种样式
 extern Style basic_style;//这是本机上的style。存于global_objects.cpp
 extern Style telnet;//telnet时的style。存于global_objects.cpp
+extern Style style_1;
 
 extern string default_filename;//保存时的默认文件名。也可以用savegame filename指令保存到别的文件
 extern bool autosave;//是否自动保存
@@ -615,6 +616,7 @@ int exe_myexe(int i,const char **t,Computer *c);
 int exe_sniffer(int argc, const char *argv[], Computer *sender);
 //int exe_mujs(int argc, const char *argv[], Computer *sender);
 int exe_undefined(int argc, const char *argv[], Computer *sender);
+int exe_style(int argc, const char *argv[], Computer *sender);
 //这堆函数的指针都放到preload_ptr_table里面。见preload_ptr_table的注释
 
 void logo();//显示logo
@@ -2733,6 +2735,7 @@ void  init_preload_ptr_table()
     add_preload_ptr((void*)&exe_sniffer,"exe_sniffer");
     add_preload_ptr((void*)&exe_mail2,"exe_mail2");
 //        fw.write(table.getid((void*)&exe_mujs),"exe_mujs");
+    add_preload_ptr((void*)&exe_style,"exe_style");
 }
 #ifndef FOR_XES
 #include "hackgame.h"
@@ -2869,6 +2872,15 @@ void logo()
     cout<<"维护者：Ink 维护者QQ：1011268631（Ink.）\n\n";
     cout<<"感谢 梦时工作室 和 芯梦工作室 提供的支持！\n";
     delay(2); 
+}
+#ifndef FOR_XES
+#include "hackgame.h"
+#endif
+
+int exe_style(int argc, const char *argv[], Computer *sender)
+{
+    sender->style = style_1;
+    return 0;
 }
 #ifndef FOR_XES
 #include "hackgame.h"
@@ -3674,6 +3686,7 @@ bool task_new_3(){
            Internet->connect("52.79.3.104").node->connect("52.79.3.105").computer->locate_file("/log/connect.log")||
            Internet->connect("52.79.3.104").node->connect("192.168.0.1").computer->locate_file("/log/connect.log")){
             game_over(1);
+            return false;
         }else{
             send_mail("[通关]删除博客","Fightingme","谢谢！");
             return true;//下一个剧情函数
@@ -3684,7 +3697,7 @@ bool task_new_3(){
 }
 
 bool task_new_4(){
-    return false;//永远不会通关
+    return false;
 }
 
 bool task_new_5(){
@@ -3704,7 +3717,7 @@ bool task_new_8(){
 }
 
 bool task_new_9(){
-    return false;
+    return false;//永远不会通关
 }
 
 #ifndef FOR_XES
@@ -4380,6 +4393,16 @@ Style telnet(   "login:",
                 ">",
                 "#");
 
+Style style_1( 	    "请输入用户名:",
+                    "请输入密码:",
+                    "",
+                    "密码错误，请重试!\n",
+                    "登陆失败\n",
+                    string(RED)+"[",
+                    string("@")+GREEN,
+                    string(RED)+"]"+RESET,
+                    "#");
+
 string default_filename = "autobackup.tree";//保存时的默认文件名
 bool autosave = true;//是否自动保存
 
@@ -4647,7 +4670,7 @@ void loadgame()
             cout<<"6.第6关"<<endl;
             cout<<"7.第7关"<<endl;
             cout<<"8.第8关"<<endl;
-            cout<<"9.通关邮件"<<endl;
+            cout<<"9.[新]第9关"<<endl;
             getline(cin,a);
             if (a == "1")
             {
@@ -4833,6 +4856,7 @@ void init_new_game()
         localhost->locate_dir("/bin")->add_file(new file("wget.exe",&exe_wget));
         localhost->locate_dir("/bin")->add_file(new file("tracer.exe",&exe_tracer));
         //localhost->locate_dir("/bin")->add_file(new file("sniffer.exe",&exe_sniffer));
+        localhost->locate_dir("/bin")->add_file(new file("style.exe",&exe_style));
         localhost->event_before_input=&task_8_1;
     }else{
         localhost->event_before_input=&task_1_1;

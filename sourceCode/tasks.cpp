@@ -514,6 +514,7 @@ bool task_new_3(){
            Internet->connect("52.79.3.104").node->connect("52.79.3.105").computer->locate_file("/log/connect.log")||
            Internet->connect("52.79.3.104").node->connect("192.168.0.1").computer->locate_file("/log/connect.log")){
             game_over(1);
+            return false;
         }else{
             send_mail("[通关]删除博客","Fightingme","谢谢！");
             return true;//下一个剧情函数
@@ -524,7 +525,7 @@ bool task_new_3(){
 }
 
 bool task_new_4(){
-    return false;//永远不会通关
+    return false;
 }
 
 bool task_new_5(){
@@ -544,6 +545,6 @@ bool task_new_8(){
 }
 
 bool task_new_9(){
-    return false;
+    return false;//永远不会通关
 }
 
