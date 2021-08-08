@@ -695,6 +695,6 @@ public:
     void sendMailToSelf(mail m);
 };
 
-void send_mail(string subject,string sender,string content);//向玩家发送邮件
+void send_mail(string subject,string sender,string content,bool if_echo=true);//向玩家发送邮件
 
 #endif

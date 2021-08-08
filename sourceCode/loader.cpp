@@ -37,6 +37,7 @@ void loadgame()
             //cout<<"9.[新]第9关"<<endl;
             cout<<"9.升级你的邮件系统"<<endl;
             cout<<"10.删除那个该死的玩意"<<endl;
+            cout<<"11.该死的期末考试！"<<endl;
             getline(cin,a);
             if (a == "1")
             {
@@ -71,7 +72,7 @@ void loadgame()
             {
                 encoded_saving = saving_task8;
             }
-            else if (a == "9" || a == "10")
+            else if (a == "9" || a == "10" || a == "11")
             {
                 encoded_saving = saving_end;
             }
@@ -83,9 +84,7 @@ void loadgame()
             //cout<<decoding(encoded_saving)<<endl<<endl;
             //cout<<decoding(encoded_saving);
             load_game_from_string(encoded_saving);
-            if (a == "10"){
-                jump_through_task(9);
-            }
+            
 
             if (!skip_set_username)
             {
@@ -101,6 +100,15 @@ void loadgame()
                 localhost->name=tmp;            
             }
             clearScreen();
+
+            if (a == "10"){
+                jump_through_task(9);
+            }
+            if (a == "11"){
+                jump_through_task(9);
+                jump_through_task(10);
+            }
+
             break;
         }
         else if (input == "3")

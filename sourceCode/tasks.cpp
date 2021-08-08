@@ -445,6 +445,7 @@ bool task_new_1(){
     return false;//循环
 }
 
+//task_number = 10
 bool task_new_2(){
     send_mail("删除博客","Fightingme",
         string("帮帮我吧！有个该死的**发了个博客骂我是**，您能不能帮我删了啊！！！\n")+
@@ -509,6 +510,7 @@ bool task_new_2(){
     return true;
 }
 
+//task_number = 11
 bool task_new_3(){
     Computer * temp = Internet->connect("52.79.3.104").node->connect("192.168.0.2").computer;
     if(!(temp->locate_file("/data/blogs/jiaoyy_blog2.txt"))){
@@ -518,7 +520,7 @@ bool task_new_3(){
             game_over(1);
             return false;
         }else{
-            send_mail("[通关]删除博客","Fightingme","谢谢！");
+            send_mail("[通关]删除那个该死的玩意","Fightingme","谢谢！");
             return true;//下一个剧情函数
         }
     }else{
@@ -526,12 +528,77 @@ bool task_new_3(){
     }
 }
 
+//task11
+//task_number = 12
 bool task_new_4(){
-    return false;
+    send_mail("帮个忙呗","lzq",
+        string("我听我一个同学说，你会黑客技术。我觉得你可以帮我个忙\n")+
+        "我语文特别差，每次都考不及格。要期末考试了，您，尊敬的"+localhost->username+"，能不能帮我弄到我们考试卷子\n"+
+        "我们学校总的IP是43.52.120.9，但是学校有好多电脑，我也不知道语文办公室电脑的内网IP。但办公室在三楼308"
+    );
+
+    //临时指针
+    Computer *temp;
+    net_node *tempnode;
+    FileSystem::dir *tempdir;
+
+    //新建一个节点
+    tempnode=new net_node("43.52.120.0");
+    Internet->add_node(tempnode);
+
+
+    //新建一个主机
+    temp=new Computer("43.52.120.9");
+    tempnode->add_node(temp->netnode,true);//连接这个主机的节点
+    temp->style=telnet;
+    temp->password="8848";//设密码
+    temp->open_port("telnet",23);//打开端口
+    temp->name="ssf_school_web_server";
+    temp->locate_dir("/data")->add_new_dir("web");
+    temp->locate_dir("/data")->add_new_dir("files");
+    tempdir = temp->locate_dir("/data/web");
+    tempdir->add_new_dir("doc");
+    tempdir = temp->locate_dir("/data/web/doc");
+    tempdir->add_new_txt("index.php","这个文件与游戏无关\n[TODO]谁愿意为GHG作贡献的可以帮助把这里补上内容:)，我是懒得写了");
+    tempdir->add_new_txt("login.php","这个文件与游戏无关\n[TODO]谁愿意为GHG作贡献的可以帮助把这里补上内容:)，我是懒得写了");
+    tempdir->add_new_txt("data.php","这个文件与游戏无关\n[TODO]谁愿意为GHG作贡献的可以帮助把这里补上内容:)，我是懒得写了");
+    tempdir->add_new_txt("user.php","这个文件与游戏无关\n[TODO]谁愿意为GHG作贡献的可以帮助把这里补上内容:)，我是懒得写了");
+    tempdir = temp->locate_dir("/data/files");
+    tempdir->add_new_txt("校长讲话.mp4","这个文件与游戏无关\n[TODO]谁愿意为GHG作贡献的可以帮助把这里补上内容:)，我是懒得写了");
+    temp->locate_dir("/data")->add_new_txt("note.txt","各个办公室只有一个计算机可由内网访问，IP的命名规则是这样的：第n层的第m个房间的ip为192.168.n.m\n如，办公室204的IP是192.168.2.4，213的IP是192.168.2.13，等等\n用户名都是admin，密码为空");
+
+    //新建一个主机
+    temp=new Computer("192.168.3.8");
+    tempnode->add_node(temp->netnode,false);//连接这个主机的节点
+    temp->style=telnet;
+    temp->password="";//设密码
+    temp->open_port("telnet",23);//打开端口
+    temp->username="admin";
+    temp->name="语文办公室主机";
+    temp->locate_dir("/data")->add_new_dir("teaching");
+    temp->locate_dir("/data/teaching")->add_new_dir("ppt");
+    temp->locate_dir("/data/teaching")->add_new_dir("doc");
+    temp->locate_dir("/data/teaching/doc")->add_new_txt("论语.txt","子曰：”学而不思则罔，思而不学则怠“");
+    temp->locate_dir("/data/teaching/doc")->add_new_txt("final_exam.doc","本试卷共999道大题，9999道小题，总计100000分。考试时间共三天。第一大题：基础与运用……");
+    
+    
+    return true;
 }
 
+//task_number = 13
 bool task_new_5(){
-    return false;
+    if(localhost->locate_file("/data/final_exam.doc")){
+        if(Internet->connect("43.52.120.0").node->connect("43.52.120.9").computer->locate_file("/log/connect.log")||
+           Internet->connect("43.52.120.0").node->connect("192.168.3.8").computer->locate_file("/log/connect.log")){
+            game_over(1);
+            return false;
+        }else{
+            send_mail("[通关]该死的期末考试","李梓淇","谢谢！不过，这卷子。。。题可真多");
+            return true;//下一个剧情函数
+        }
+    }else{
+        return false;
+    }
 }
 
 bool task_new_6(){
@@ -558,6 +625,60 @@ void jump_through_task(int index){
             task_number = 9;
             localhost->event_before_input=task_9_2;
             //localhost->process_event_before_input();
+            break;
+        case 10:
+            task_number = 12;
+            send_mail("网络教程","nic",
+                    /*
+                    计算机网络可以分成两种：公网和子网
+
+                    比如说主机29.53.103.3就是直接连接到公网上的。我们可以用如下图示表示：
+                    ｜--------｜
+                    ｜Internet｜
+                    ｜--------｜
+                        ｜
+                    29.53.103.3
+
+                    但有时主机没有直接连接到公网，比如说您的计算机就是连接到路由器：
+                    ｜--------｜
+                    ｜Internet｜
+                    ｜--------｜
+                        ｜
+                    路由器（IP为188.131.133.248）
+                    由子网发来的数据包全部发向公网
+                    由公网发来的数据包全部发向192.168.0.0
+                        ｜
+                    ------------- 子网
+                    ｜           ｜
+                    您的计算机       你们家的另一台计算机
+                    IP=192.168.0.0 IP=192.168.0.1
+                    */
+                    string("计算机网络可以分成两种：公网和子网\n\n")+
+                    "比如说主机29.53.103.3就是直接连接到公网上的。我们可以用如下图示表示：\n"+
+                    "｜--------｜\n"+
+                    "｜Internet｜\n"+
+                    "｜--------｜\n"+
+                    "     ｜\n"+
+                    "29.53.103.3\n\n"+
+                    "但有时主机没有直接连接到公网，比如说您的计算机就是连接到路由器：\n"+
+                    "｜--------｜\n"+
+                    "｜Internet｜\n"+
+                    "｜--------｜\n"+
+                    "    ｜\n"+
+                    "路由器（IP为188.131.133.248）\n"+
+                    "由子网发来的数据包全部发向公网\n"+
+                    "由公网发来的数据包全部发向192.168.0.0\n"+
+                    "     ｜\n"+
+                    "   ------------- 子网\n"+
+                    "   ｜           ｜\n"+
+                    "您的计算机       你们家的另一台计算机\n"+
+                    "IP=192.168.0.0 IP=192.168.0.1\n"
+            ,false);
+            send_mail("删除博客","Fightingme",
+                string("帮帮我吧！有个该死的**发了个博客骂我是**，您能不能帮我删了啊！！！\n")+
+                "那个博客网站的ip是52.79.3.105，那个用户叫jiaoyy",false
+            );
+            send_mail("[通关]删除那个该死的玩意","Fightingme","谢谢！",false);
             break;
         default:
             cout<<"ERROR:jump_through_task(int index):关卡不存在"<<endl;

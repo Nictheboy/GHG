@@ -196,7 +196,8 @@ int exe_passguesser(int i,const char **t, Computer *c)
         if (reply.computer->password=="123456"||
             reply.computer->password=="password123"||
             reply.computer->password=="root"||
-            reply.computer->password=="password0abc")
+            reply.computer->password=="password0abc"||
+            reply.computer->password=="8848")
         {
             delay(10);
             cout<<endl<<BG_BLUE<<"破解成功！"<<RESET<<endl;

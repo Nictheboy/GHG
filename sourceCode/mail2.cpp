@@ -105,10 +105,10 @@ void mailManager::sendMailToSelf(mail m){
     );
 }
 
-void send_mail(string subject,string sender,string content){
+void send_mail(string subject,string sender,string content,bool if_echo){
     mailManager m(localhost);
     m.sendMailToSelf(mailManager::mail(subject,localhost->username,sender,content));
-    cout<<BG_BLUE<<"您收到一封加密邮件！输入mail2查看"<<RESET<<endl;
+    if (if_echo) cout<<BG_BLUE<<"您收到一封加密邮件！输入mail2查看"<<RESET<<endl;
 }
 
 int exe_mail2(int n,const char **t,Computer *c)
