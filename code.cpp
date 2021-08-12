@@ -351,7 +351,7 @@ public:
     void (*on_package_pass)(data_package package, net_node *caller);//数据包经过时触发，包括发送数据包时
 
     net_node(string ip);//构造函数
-    connection_reply connect(string ip,string type="TCP");//发送一个请求，返回一个reply。type暂时没用
+    connection_reply connect(string address,string type="TCP");//发送一个请求，返回一个reply。type暂时没用
     connection_reply connect(connection_request,bool up_failed=false);//另一种发送请求的方式
     bool add_node(net_node *node,bool add_up=true);//添加一个节点，如果addup是true，会自动在所有上级节点上添加映射
     bool add_map(string ip,net_node *node);//添加一个映射
@@ -359,6 +359,8 @@ public:
     void show(int format=0);//递归地显示
     void send_package(data_package package, bool up_failed=false);
     void send_package(string to, string data, string type);
+    static void add_dns_map(string domin_name, string ip);//添加一个DNS映射，domin_name是域名
+    static string get_dns_reply(string address);//根据地址（可以是ip也可以是域名），返回IP。没找着则返回address本身
 };
 
 //网络更新代码结束
@@ -551,7 +553,7 @@ extern string default_filename;//保存时的默认文件名。也可以用saveg
 extern bool autosave;//是否自动保存
 
 extern list<pair<void*,string> > preload_ptr_table;//这个里面放着所有存档时的指针及其名字。由preload_ptr_table.cpp初始化
-//extern list<string> mail_list;
+extern list<pair<string,string> > dns_table;//DNS表，前一个string是域名，后一个是IP
 
 vector<string> split(const string &s, const string &seperator,bool if_count_first_blank=false);//分隔字符串，懒得解释了
 //算了解释一下吧
@@ -671,11 +673,6 @@ public:
 };
 */
 
-//声明就完了
-//不过各个文件里有的地方还有注释
-//一半以上的注释是2021年7月12日写的
-//我是故意写的特别啰嗦的:)
-
 class mailManager{
 //实现邮件管理，是mail.exe的组成部分。代码见mail.cpp
 private:
@@ -697,6 +694,11 @@ public:
 
 void send_mail(string subject,string sender,string content,bool if_echo=true);//向玩家发送邮件
 
+
+//声明就完了
+//不过各个文件里有的地方还有注释
+//一半以上的注释是2021年7月12日写的
+//我是故意写的特别啰嗦的:)
 #endif
 #ifndef FOR_XES
 #include "hackgame.h"
@@ -732,10 +734,11 @@ connection_reply::connection_reply(Computer *c,net_node *n,string s)
     status=s;
 }
 
-connection_reply net_node::connect(string remote_ip,string type)
+connection_reply net_node::connect(string address,string type)
 {
     //cout<<"connect()"<<remote_ip<<"\t"<<type<<endl;
     //Internet.show();
+    string remote_ip = net_node::get_dns_reply(address);
     return connect(connection_request(ip,remote_ip,type));
 }
 
@@ -897,6 +900,20 @@ void net_node::send_package(string to, string data, string type)
             0
         )
     );
+}
+
+void net_node::add_dns_map(string domin_name, string ip){
+    dns_table.push_back(pair<string,string>(domin_name,ip));
+}
+
+string net_node::get_dns_reply(string address){
+    //for(int i=0;i<dns_table.size();i++){
+    //   if (address==dns_table[i].first) return dns_table[i].second;
+    //}
+    for(list<pair<string,string> >::iterator itor = dns_table.begin();itor!=dns_table.end();itor++){
+        if (address==itor->first) return itor->second;
+    }
+    return address;
 }
 #ifndef FOR_XES
 #include "hackgame.h"
@@ -1541,15 +1558,16 @@ int exe_ping(int i,const char **t,Computer *c)
         cout<<"参数不足!语法:ping [主机IP]\n";
         return 0;
     }
-    cout<<"Ping "<<t[1]<<" with 32 bytes of data:"<<endl;
+    string ip = net_node::get_dns_reply(t[1]);
+    cout<<"Ping "<<ip<<" with 32 bytes of data:"<<endl;
     for (int i=0;i<4;i++)
     {
         sent++;
-        reply=c->netnode->connect(t[1]);
+        reply=c->netnode->connect(ip);
         if (reply.computer)
         {
             received++;
-            cout<<"Reply from "<<t[1]<<": bytes=32 time="<<rand()%5+20<<" TTL=100"<<endl;
+            cout<<"Reply from "<<ip<<": bytes=32 time="<<rand()%5+20<<" TTL=100"<<endl;
             delay(0.5);
         }
         else
@@ -1560,7 +1578,7 @@ int exe_ping(int i,const char **t,Computer *c)
         }
     }
     cout<<endl;
-    cout<<"Ping statistics for "<<t[1]<<":"<<endl;
+    cout<<"Ping statistics for "<<ip<<":"<<endl;
     cout<<"\tPackets: Sent = "<<sent
         <<", Received = "<<received
         <<", Lost = "<<lost
@@ -4551,6 +4569,7 @@ bool autosave = true;//是否自动保存
 
 list<pair<void*,string> > preload_ptr_table;
 list<string> mail_list;
+list<pair<string,string> > dns_table;
 #ifndef FOR_XES
 #include "hackgame.h"
 #endif
@@ -5014,6 +5033,7 @@ void init_new_game()
         localhost->locate_dir("/bin")->add_file(new file("tracer.exe",&exe_tracer));
         //localhost->locate_dir("/bin")->add_file(new file("sniffer.exe",&exe_sniffer));
         localhost->locate_dir("/bin")->add_file(new file("style.exe",&exe_style));
+        net_node::add_dns_map("test.com","178.53.100.24");
         localhost->event_before_input=&task_8_1;
     }else{
         localhost->event_before_input=&task_1_1;

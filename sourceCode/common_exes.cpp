@@ -359,15 +359,16 @@ int exe_ping(int i,const char **t,Computer *c)
         cout<<"参数不足!语法:ping [主机IP]\n";
         return 0;
     }
-    cout<<"Ping "<<t[1]<<" with 32 bytes of data:"<<endl;
+    string ip = net_node::get_dns_reply(t[1]);
+    cout<<"Ping "<<ip<<" with 32 bytes of data:"<<endl;
     for (int i=0;i<4;i++)
     {
         sent++;
-        reply=c->netnode->connect(t[1]);
+        reply=c->netnode->connect(ip);
         if (reply.computer)
         {
             received++;
-            cout<<"Reply from "<<t[1]<<": bytes=32 time="<<rand()%5+20<<" TTL=100"<<endl;
+            cout<<"Reply from "<<ip<<": bytes=32 time="<<rand()%5+20<<" TTL=100"<<endl;
             delay(0.5);
         }
         else
@@ -378,7 +379,7 @@ int exe_ping(int i,const char **t,Computer *c)
         }
     }
     cout<<endl;
-    cout<<"Ping statistics for "<<t[1]<<":"<<endl;
+    cout<<"Ping statistics for "<<ip<<":"<<endl;
     cout<<"\tPackets: Sent = "<<sent
         <<", Received = "<<received
         <<", Lost = "<<lost

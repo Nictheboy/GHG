@@ -51,11 +51,11 @@ V1.4.0	增加了跳关功能（通过内置了若干存档实现）
 #define COMPUTER3 "117.51.143.120"
 #define PROGRAM_INFO "黑客游戏 Release V1.4.0"//游戏的版本信息
 #define SAVING_VERSION 4//存档版本
-#define DEBUG//调试标志，打开这个后会执行一些代码，直接测试最后一关
+//#define DEBUG//调试标志，打开这个后会执行一些代码，直接测试最后一关
 //#define MAKE_SAVINGS//每进入一关就自动保存一个存档，调试用
 
 //#define TEST_WINDOWS//用于在Linux上测试Windows模式
-#define NO_DELAY//无延时，测试用
+//#define NO_DELAY//无延时，测试用
 #define FOR_XES//用于生成单文件代码，即文件code.cpp
 
 #if defined(_WIN32) || defined(_WIN64)//判断是否是windows
@@ -351,7 +351,7 @@ public:
     void (*on_package_pass)(data_package package, net_node *caller);//数据包经过时触发，包括发送数据包时
 
     net_node(string ip);//构造函数
-    connection_reply connect(string ip,string type="TCP");//发送一个请求，返回一个reply。type暂时没用
+    connection_reply connect(string address,string type="TCP");//发送一个请求，返回一个reply。type暂时没用
     connection_reply connect(connection_request,bool up_failed=false);//另一种发送请求的方式
     bool add_node(net_node *node,bool add_up=true);//添加一个节点，如果addup是true，会自动在所有上级节点上添加映射
     bool add_map(string ip,net_node *node);//添加一个映射
@@ -359,6 +359,8 @@ public:
     void show(int format=0);//递归地显示
     void send_package(data_package package, bool up_failed=false);
     void send_package(string to, string data, string type);
+    static void add_dns_map(string domin_name, string ip);//添加一个DNS映射，domin_name是域名
+    static string get_dns_reply(string address);//根据地址（可以是ip也可以是域名），返回IP。没找着则返回address本身
 };
 
 //网络更新代码结束
@@ -551,7 +553,7 @@ extern string default_filename;//保存时的默认文件名。也可以用saveg
 extern bool autosave;//是否自动保存
 
 extern list<pair<void*,string> > preload_ptr_table;//这个里面放着所有存档时的指针及其名字。由preload_ptr_table.cpp初始化
-//extern list<string> mail_list;
+extern list<pair<string,string> > dns_table;//DNS表，前一个string是域名，后一个是IP
 
 vector<string> split(const string &s, const string &seperator,bool if_count_first_blank=false);//分隔字符串，懒得解释了
 //算了解释一下吧
@@ -671,11 +673,6 @@ public:
 };
 */
 
-//声明就完了
-//不过各个文件里有的地方还有注释
-//一半以上的注释是2021年7月12日写的
-//我是故意写的特别啰嗦的:)
-
 class mailManager{
 //实现邮件管理，是mail.exe的组成部分。代码见mail.cpp
 private:
@@ -697,4 +694,9 @@ public:
 
 void send_mail(string subject,string sender,string content,bool if_echo=true);//向玩家发送邮件
 
+
+//声明就完了
+//不过各个文件里有的地方还有注释
+//一半以上的注释是2021年7月12日写的
+//我是故意写的特别啰嗦的:)
 #endif

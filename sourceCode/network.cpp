@@ -24,10 +24,11 @@ connection_reply::connection_reply(Computer *c,net_node *n,string s)
     status=s;
 }
 
-connection_reply net_node::connect(string remote_ip,string type)
+connection_reply net_node::connect(string address,string type)
 {
     //cout<<"connect()"<<remote_ip<<"\t"<<type<<endl;
     //Internet.show();
+    string remote_ip = net_node::get_dns_reply(address);
     return connect(connection_request(ip,remote_ip,type));
 }
 
@@ -189,4 +190,18 @@ void net_node::send_package(string to, string data, string type)
             0
         )
     );
+}
+
+void net_node::add_dns_map(string domin_name, string ip){
+    dns_table.push_back(pair<string,string>(domin_name,ip));
+}
+
+string net_node::get_dns_reply(string address){
+    //for(int i=0;i<dns_table.size();i++){
+    //   if (address==dns_table[i].first) return dns_table[i].second;
+    //}
+    for(list<pair<string,string> >::iterator itor = dns_table.begin();itor!=dns_table.end();itor++){
+        if (address==itor->first) return itor->second;
+    }
+    return address;
 }

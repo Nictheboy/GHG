@@ -46,3 +46,4 @@ bool autosave = true;//是否自动保存
 
 list<pair<void*,string> > preload_ptr_table;
 list<string> mail_list;
+list<pair<string,string> > dns_table;
