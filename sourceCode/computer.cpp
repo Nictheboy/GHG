@@ -702,9 +702,9 @@ int Computer::scp(int n, const char* c[])
         if (n < 3)
         {
             cout << "缺少参数!语法:\n";
-            cout << "scp [远程文件名]"<<endl;
-            cout << "scp -u [本地文件名] [远程ip](:[端口])"<<endl;
-            cout << "scp -d [远程文件名] [远程ip](:[端口])"<<endl;
+            cout << "下载文件到本地：   scp [远程文件名]"<<endl;
+            cout << "上传文件到远程主机：scp -u [本地文件名] [远程ip](:[端口])"<<endl;
+            cout << "下载远程主机的文件：scp -d [远程文件名] [远程ip](:[端口])"<<endl;
             return 0;
         }
         string ip;

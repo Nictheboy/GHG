@@ -51,11 +51,11 @@ V1.4.0	增加了跳关功能（通过内置了若干存档实现）
 #define COMPUTER3 "117.51.143.120"
 #define PROGRAM_INFO "黑客游戏 Release V1.4.0"//游戏的版本信息
 #define SAVING_VERSION 4//存档版本
-#define DEBUG//调试标志，打开这个后会执行一些代码，直接测试最后一关
+//#define DEBUG//调试标志，打开这个后会执行一些代码，直接测试最后一关
 //#define MAKE_SAVINGS//每进入一关就自动保存一个存档，调试用
 
 //#define TEST_WINDOWS//用于在Linux上测试Windows模式
-#define NO_DELAY//无延时，测试用
+//#define NO_DELAY//无延时，测试用
 #define FOR_XES//用于生成单文件代码，即文件code.cpp
 
 #if defined(_WIN32) || defined(_WIN64)//判断是否是windows
@@ -3794,8 +3794,20 @@ bool task_new_5(){
     }
 }
 
+//task12
+//task_number = 14
 bool task_new_6(){
-    return false;
+    send_mail("入侵C站","张子辰",string("同学！我听说你擅长黑客技术。我现在遇到了一个该死的麻烦，希望你帮我解决一下。\n")
+                +"有一个人社区名叫李萨碧，id是43689021。他把我做的作品Survive当成自己的作品发布，正常情况下我可以举报他，但这次他先骗到了最新版Survive的代码，然后自己先发到社区上。我自己发出来后，他不但不承认这个版本是我做的，还把我举报了。\n"
+                +"你是黑客，黑客要主持正义。你帮我黑入C站，并且把这个人的作品删掉。\n"
+                +"有关信息：\n"
+                +"   C站网址：code.xueersi.com\n"
+                +"   李萨碧的id：43689021\n"
+                +"   要删除的作品的id：4110506\n"
+                +"提示：\n"
+                +"   可能需要使用scp -u"
+    );
+    return true;
 }
 
 bool task_new_7(){
@@ -3822,30 +3834,6 @@ void jump_through_task(int index){
         case 10:
             task_number = 12;
             send_mail("网络教程","nic",
-                    /*
-                    计算机网络可以分成两种：公网和子网
-
-                    比如说主机29.53.103.3就是直接连接到公网上的。我们可以用如下图示表示：
-                    ｜--------｜
-                    ｜Internet｜
-                    ｜--------｜
-                        ｜
-                    29.53.103.3
-
-                    但有时主机没有直接连接到公网，比如说您的计算机就是连接到路由器：
-                    ｜--------｜
-                    ｜Internet｜
-                    ｜--------｜
-                        ｜
-                    路由器（IP为188.131.133.248）
-                    由子网发来的数据包全部发向公网
-                    由公网发来的数据包全部发向192.168.0.0
-                        ｜
-                    ------------- 子网
-                    ｜           ｜
-                    您的计算机       你们家的另一台计算机
-                    IP=192.168.0.0 IP=192.168.0.1
-                    */
                     string("计算机网络可以分成两种：公网和子网\n\n")+
                     "比如说主机29.53.103.3就是直接连接到公网上的。我们可以用如下图示表示：\n"+
                     "｜--------｜\n"+
@@ -3872,6 +3860,15 @@ void jump_through_task(int index){
                 "那个博客网站的ip是52.79.3.105，那个用户叫jiaoyy",false
             );
             send_mail("[通关]删除那个该死的玩意","Fightingme","谢谢！",false);
+            break;
+        case 11:
+            send_mail("帮个忙呗","lzq",
+                string("我听我一个同学说，你会黑客技术。我觉得你可以帮我个忙\n")+
+                "我语文特别差，每次都考不及格。要期末考试了，您，尊敬的"+localhost->username+"，能不能帮我弄到我们考试卷子\n"+
+                "我们学校总的IP是43.52.120.9，但是学校有好多电脑，我也不知道语文办公室电脑的内网IP。但办公室在三楼308"
+            ,false);
+            send_mail("[通关]该死的期末考试","李梓淇","谢谢！不过，这卷子。。。题可真多",false);
+            task_number = 14;
             break;
         default:
             cout<<"ERROR:jump_through_task(int index):关卡不存在"<<endl;
@@ -4836,6 +4833,7 @@ void loadgame()
             cout<<"9.升级你的邮件系统"<<endl;
             cout<<"10.删除那个该死的玩意"<<endl;
             cout<<"11.该死的期末考试！"<<endl;
+            cout<<"12.入侵C站"<<endl;
             getline(cin,a);
             if (a == "1")
             {
@@ -4870,13 +4868,13 @@ void loadgame()
             {
                 encoded_saving = saving_task8;
             }
-            else if (a == "9" || a == "10" || a == "11")
+            else if (a == "9" || a == "10" || a == "11" || a == "12")
             {
                 encoded_saving = saving_end;
             }
             else
             {
-                cout<<"请输入1至9的数字!"<<endl;
+                cout<<"请输入1至12的数字!"<<endl;
                 continue;
             }
             //cout<<decoding(encoded_saving)<<endl<<endl;
@@ -4902,9 +4900,14 @@ void loadgame()
             if (a == "10"){
                 jump_through_task(9);
             }
-            if (a == "11"){
+            else if (a == "11"){
                 jump_through_task(9);
                 jump_through_task(10);
+            }
+            else if (a == "12"){
+                jump_through_task(9);
+                jump_through_task(10);
+                jump_through_task(11);
             }
 
             break;

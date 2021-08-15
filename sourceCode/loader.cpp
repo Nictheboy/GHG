@@ -38,6 +38,7 @@ void loadgame()
             cout<<"9.升级你的邮件系统"<<endl;
             cout<<"10.删除那个该死的玩意"<<endl;
             cout<<"11.该死的期末考试！"<<endl;
+            cout<<"12.入侵C站"<<endl;
             getline(cin,a);
             if (a == "1")
             {
@@ -72,13 +73,13 @@ void loadgame()
             {
                 encoded_saving = saving_task8;
             }
-            else if (a == "9" || a == "10" || a == "11")
+            else if (a == "9" || a == "10" || a == "11" || a == "12")
             {
                 encoded_saving = saving_end;
             }
             else
             {
-                cout<<"请输入1至9的数字!"<<endl;
+                cout<<"请输入1至12的数字!"<<endl;
                 continue;
             }
             //cout<<decoding(encoded_saving)<<endl<<endl;
@@ -104,9 +105,14 @@ void loadgame()
             if (a == "10"){
                 jump_through_task(9);
             }
-            if (a == "11"){
+            else if (a == "11"){
                 jump_through_task(9);
                 jump_through_task(10);
+            }
+            else if (a == "12"){
+                jump_through_task(9);
+                jump_through_task(10);
+                jump_through_task(11);
             }
 
             break;
