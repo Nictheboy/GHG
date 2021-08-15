@@ -106,12 +106,9 @@ void loadgame()
                 jump_through_task(9);
             }
             else if (a == "11"){
-                jump_through_task(9);
                 jump_through_task(10);
             }
             else if (a == "12"){
-                jump_through_task(9);
-                jump_through_task(10);
                 jump_through_task(11);
             }
 

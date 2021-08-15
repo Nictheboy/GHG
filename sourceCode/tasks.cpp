@@ -631,6 +631,9 @@ bool task_new_9(){
 
 void jump_through_task(int index){
     if(index>=9){
+        if (index > 9){
+            jump_through_task(index-1);
+        }
         switch(index){
         case 9:
             localhost->locate_dir("/bin")->add_file(new FileSystem::file("mail2.exe",&exe_mail2));

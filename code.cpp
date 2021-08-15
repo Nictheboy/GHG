@@ -2409,9 +2409,9 @@ int Computer::scp(int n, const char* c[])
         if (n < 3)
         {
             cout << "缺少参数!语法:\n";
-            cout << "scp [远程文件名]"<<endl;
-            cout << "scp -u [本地文件名] [远程ip](:[端口])"<<endl;
-            cout << "scp -d [远程文件名] [远程ip](:[端口])"<<endl;
+            cout << "下载文件到本地：   scp [远程文件名]"<<endl;
+            cout << "上传文件到远程主机：scp -u [本地文件名] [远程ip](:[端口])"<<endl;
+            cout << "下载远程主机的文件：scp -d [远程文件名] [远程ip](:[端口])"<<endl;
             return 0;
         }
         string ip;
@@ -3824,6 +3824,9 @@ bool task_new_9(){
 
 void jump_through_task(int index){
     if(index>=9){
+        if (index > 9){
+            jump_through_task(index-1);
+        }
         switch(index){
         case 9:
             localhost->locate_dir("/bin")->add_file(new FileSystem::file("mail2.exe",&exe_mail2));
@@ -3833,6 +3836,7 @@ void jump_through_task(int index){
             break;
         case 10:
             task_number = 12;
+            /*
             send_mail("网络教程","nic",
                     string("计算机网络可以分成两种：公网和子网\n\n")+
                     "比如说主机29.53.103.3就是直接连接到公网上的。我们可以用如下图示表示：\n"+
@@ -3860,14 +3864,17 @@ void jump_through_task(int index){
                 "那个博客网站的ip是52.79.3.105，那个用户叫jiaoyy",false
             );
             send_mail("[通关]删除那个该死的玩意","Fightingme","谢谢！",false);
+            */
             break;
         case 11:
+            /*
             send_mail("帮个忙呗","lzq",
                 string("我听我一个同学说，你会黑客技术。我觉得你可以帮我个忙\n")+
                 "我语文特别差，每次都考不及格。要期末考试了，您，尊敬的"+localhost->username+"，能不能帮我弄到我们考试卷子\n"+
                 "我们学校总的IP是43.52.120.9，但是学校有好多电脑，我也不知道语文办公室电脑的内网IP。但办公室在三楼308"
             ,false);
             send_mail("[通关]该死的期末考试","李梓淇","谢谢！不过，这卷子。。。题可真多",false);
+            */
             task_number = 14;
             break;
         default:
@@ -4901,12 +4908,9 @@ void loadgame()
                 jump_through_task(9);
             }
             else if (a == "11"){
-                jump_through_task(9);
                 jump_through_task(10);
             }
             else if (a == "12"){
-                jump_through_task(9);
-                jump_through_task(10);
                 jump_through_task(11);
             }
 
