@@ -55,7 +55,7 @@ V1.4.0	增加了跳关功能（通过内置了若干存档实现）
 //#define MAKE_SAVINGS//每进入一关就自动保存一个存档，调试用
 
 //#define TEST_WINDOWS//用于在Linux上测试Windows模式
-//#define NO_DELAY//无延时，测试用
+#define NO_DELAY//无延时，测试用
 #define FOR_XES//用于生成单文件代码，即文件code.cpp
 
 #if defined(_WIN32) || defined(_WIN64)//判断是否是windows

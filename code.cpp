@@ -55,7 +55,7 @@ V1.4.0	增加了跳关功能（通过内置了若干存档实现）
 //#define MAKE_SAVINGS//每进入一关就自动保存一个存档，调试用
 
 //#define TEST_WINDOWS//用于在Linux上测试Windows模式
-//#define NO_DELAY//无延时，测试用
+#define NO_DELAY//无延时，测试用
 #define FOR_XES//用于生成单文件代码，即文件code.cpp
 
 #if defined(_WIN32) || defined(_WIN64)//判断是否是windows
@@ -3807,11 +3807,88 @@ bool task_new_6(){
                 +"提示：\n"
                 +"   可能需要使用scp -u"
     );
+
+    //临时指针
+    Computer *temp;
+    net_node *tempnode;
+    FileSystem::dir *tempdir;
+
+    net_node::add_dns_map("code.xueersi.com","61.135.179.238");
+
+    //新建一个主机
+    temp=new Computer("61.135.179.238");
+    tempnode = temp->netnode;
+    Internet->add_node(temp->netnode);
+    temp->style=telnet;
+    temp->password="123456";//设密码
+    temp->open_port("telnet",600);//打开端口
+    temp->name="smart_firewall";
+    temp->locate_dir("/data")->add_new_dir("firewall_config");
+    temp->locate_dir("/data/firewall_config")->add_new_txt("port_map.config","#这个文件是对防火墙的设置\n#第一项是子网主机地址，后面两项是子网主机端口和外网端口\n#NULL表示拒绝外网访问\n172.0.0.1 23 600\n192.168.0.1 80 80\n192.168.0.2 NULL\n192.168.0.3 NULL");
+
+    //新建一个主机
+    temp=new Computer("192.168.0.1");
+    tempnode->add_node(temp->netnode);
+    temp->style=telnet;
+    temp->password="password0abc";//设密码
+    temp->open_port("telnet",23);//打开端口
+    temp->locate_dir("/data")->add_new_dir("web");
+    temp->locate_dir("/data/web")->add_new_txt("【说明】.txt","这个文件与游戏无关！");
+    temp->locate_dir("/data")->add_new_dir("config");
+    temp->locate_dir("/data/config")->add_new_txt("vm_host.config","#对虚机服务器的配置文件\n[vm_host]\naddress=192.168.0.2\nvcn_port=72");
+    temp->locate_dir("/data/config")->add_new_txt("db_host.config","#对社区数据服务器的配置文件\n[db_host]\naddress=192.168.0.3\nmysql_port=3306");
+
+    //新建一个主机
+    temp=new Computer("192.168.0.2");
+    tempnode->add_node(temp->netnode);
+    temp->style=telnet;
+    temp->password="password0abc";//设密码
+    temp->open_port("telnet",23);//打开端口
+    temp->locate_dir("/data")->add_new_dir("machines");
+    temp->locate_dir("/data/machines")->add_new_dir("lib");
+    temp->locate_dir("/data/machines/lib")->add_new_txt("【说明】.txt","这个文件与游戏无关！");
+    temp->locate_dir("/data/machines")->add_new_dir("temp_data");
+    temp->locate_dir("/data/machines/temp_data")->add_new_txt("彩蛋.txt","你找到了一个彩蛋");
+
+    //新建一个主机
+    temp=new Computer("192.168.0.3");
+    tempnode->add_node(temp->netnode);
+    temp->style=telnet;
+    temp->password="password0abc";//设密码
+    temp->open_port("telnet",23);//打开端口
+    temp->locate_dir("/data")->add_new_dir("database");
+    temp->locate_dir("/data/database")->add_new_dir("user");
+    temp->locate_dir("/data/database")->add_new_dir("projects");
+    temp->locate_dir("/data/database/user")->add_new_txt("userconfig.sql","这个文件与游戏无关！");
+    temp->locate_dir("/data/database/projects")->add_new_txt("pid_4110500.xml","#此处省略一大堆数据\n......");
+    temp->locate_dir("/data/database/projects")->add_new_txt("pid_4110501.xml","#此处省略一大堆数据\n......");
+    temp->locate_dir("/data/database/projects")->add_new_txt("pid_4110502.xml","彩蛋！");
+    temp->locate_dir("/data/database/projects")->add_new_txt("pid_4110503.xml","#此处省略一大堆数据\n......");
+    temp->locate_dir("/data/database/projects")->add_new_txt("pid_4110504.xml","#此处省略一大堆数据\n......");
+    temp->locate_dir("/data/database/projects")->add_new_txt("pid_4110505.xml","#此处省略一大堆数据\n......");
+    temp->locate_dir("/data/database/projects")->add_new_txt("pid_4110506.xml","<project id=4110506>\n<author>李萨碧</author>\n......");
+    temp->locate_dir("/data/database/projects")->add_new_txt("此处省略一大堆数据.txt","此处省略一大堆数据");
     return true;
 }
 
 bool task_new_7(){
-    return false;
+    if(!(Internet->connect("code.xueersi.com").node->connect("192.168.0.3").computer->locate_file("/data/database/projects/pid_4110506.xml"))){
+        if(Internet->connect("code.xueersi.com").computer->locate_file("/log/connect.log")||
+           Internet->connect("code.xueersi.com").computer->locate_file("/log/telnet.log")||
+           Internet->connect("code.xueersi.com").computer->locate_file("/data/passguesser.exe")||
+           Internet->connect("code.xueersi.com").node->connect("192.168.0.1").computer->locate_file("/log/connect.log")||
+           Internet->connect("code.xueersi.com").node->connect("192.168.0.2").computer->locate_file("/log/connect.log")||
+           Internet->connect("code.xueersi.com").node->connect("192.168.0.3").computer->locate_file("/log/connect.log")){
+            game_over(1);
+            return false;
+        }else{
+            send_mail("[通关]入侵C站","张子辰","你成功了维持了正义！");
+            send_mail("[活动]寻找彩蛋","Nictheboy","本关中有三个彩蛋！请你仔细寻找，找到后回复我！\n有神秘大奖！");
+            return true;//下一个剧情函数
+        }
+    }else{
+        return false;
+    }
 }
 
 bool task_new_8(){
