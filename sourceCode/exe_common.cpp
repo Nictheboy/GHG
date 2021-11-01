@@ -125,8 +125,8 @@ int exe_help(int i,const char **t, Computer *c)
     cout<<"type    显示一个文本文档的内容\n";
     cout<<"mail    查看邮件\n";
     cout<<"mkdir   新建一个文件夹\n";
-    cout<<"\n";
-    cout<<"没了，就这么几个，不过这个简单的文件系统我真做了老半天，命令行系统也是我自己做的。命令太少，请谅解。\n";
+    //cout<<"\n";
+    //cout<<"没了，就这么几个，不过这个简单的文件系统我真做了老半天，命令行系统也是我自己做的。命令太少，请谅解。\n";
     //cout<<BG_RED<<"童鞋，一定要试试telnet 29.53.103.3这个指令啊！口令是123456"<<RESET<<endl;
     return 0;
 }

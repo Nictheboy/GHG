@@ -1,0 +1,403 @@
+﻿  exe_common.cpp
+F:\课件\GHG\sourceCode\exe_common.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\hackgame.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\hackgame.h(642,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\exe_common.cpp(41,15): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\exe_common.cpp(42,9): error C2143: 语法错误: 缺少“;”(在“return”的前面)
+F:\课件\GHG\sourceCode\exe_common.cpp(58,15): error C3872: “0xe21a”: 此字符不允许在标识符中使用
+F:\课件\GHG\sourceCode\exe_common.cpp(58,92): error C3688: 文本后缀“绔彛鐨刪ttp鏈嶅姟”无效；未找到文文本运算符或文本运算符模板“operator """"绔彛鐨刪ttp鏈嶅姟”
+F:\课件\GHG\sourceCode\exe_common.cpp(58,92): error C2143: 语法错误: 缺少“;”(在“!”的前面)
+F:\课件\GHG\sourceCode\exe_common.cpp(58,93): error C3872: “0xe5c5”: 此字符不允许在标识符中使用
+F:\课件\GHG\sourceCode\exe_common.cpp(58,93): error C3872: “0xe06c”: 此字符不允许在标识符中使用
+F:\课件\GHG\sourceCode\exe_common.cpp(58,122): error C2017: 非法的转义序列
+F:\课件\GHG\sourceCode\exe_common.cpp(58,93): error C2065: “璇锋鏌ョ鍙ｅ拰ip”: 未声明的标识符
+F:\课件\GHG\sourceCode\exe_common.cpp(58,124): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\exe_common.cpp(58,123): error C2146: 语法错误: 缺少“;”(在标识符“n”的前面)
+F:\课件\GHG\sourceCode\exe_common.cpp(58,124): error C2143: 语法错误: 缺少“;”(在“字符串”的前面)
+F:\课件\GHG\sourceCode\exe_common.cpp(59,9): error C2143: 语法错误: 缺少“;”(在“return”的前面)
+F:\课件\GHG\sourceCode\exe_common.cpp(65,24): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\exe_common.cpp(74,99): error C3688: 文本后缀“澶嶅埗鍒版湰鍦data鏂囦欢澶”无效；未找到文文本运算符或文本运算符模板“operator """"澶嶅埗鍒版湰鍦data鏂囦欢澶”
+F:\课件\GHG\sourceCode\exe_common.cpp(74,100): error C2059: 语法错误:“.”
+F:\课件\GHG\sourceCode\exe_common.cpp(74,101): error C2017: 非法的转义序列
+F:\课件\GHG\sourceCode\exe_common.cpp(74,103): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\exe_common.cpp(142,58): error C2296: “<<”: 非法，左操作数包含“void”类型
+F:\课件\GHG\sourceCode\exe_common.cpp(142,58): error C2297: “<<”: 非法，右操作数包含“const char [30]”类型
+F:\课件\GHG\sourceCode\exe_common.cpp(143,71): error C2296: “<<”: 非法，左操作数包含“void”类型
+F:\课件\GHG\sourceCode\exe_common.cpp(143,71): error C2297: “<<”: 非法，右操作数包含“const char [35]”类型
+F:\课件\GHG\sourceCode\exe_common.cpp(144,46): error C2296: “<<”: 非法，左操作数包含“void”类型
+F:\课件\GHG\sourceCode\exe_common.cpp(144,46): error C2297: “<<”: 非法，右操作数包含“const char [25]”类型
+F:\课件\GHG\sourceCode\exe_common.cpp(168,15): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\exe_common.cpp(169,9): error C2143: 语法错误: 缺少“;”(在“if”的前面)
+F:\课件\GHG\sourceCode\exe_common.cpp(186,75): error C2296: “<<”: 非法，左操作数包含“void”类型
+F:\课件\GHG\sourceCode\exe_common.cpp(186,75): error C2297: “<<”: 非法，右操作数包含“const char [28]”类型
+F:\课件\GHG\sourceCode\exe_common.cpp(186,75): error C2143: 语法错误: 缺少“;”(在“!”的前面)
+F:\课件\GHG\sourceCode\exe_common.cpp(186,76): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\exe_common.cpp(187,9): error C2146: 语法错误: 缺少“;”(在标识符“cout”的前面)
+F:\课件\GHG\sourceCode\exe_common.cpp(186,75): warning C4552: ”!“: 未使用表达式结果
+F:\课件\GHG\sourceCode\exe_common.cpp(203,34): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\exe_common.cpp(204,17): error C2296: “<<”: 非法，左操作数包含“void”类型
+F:\课件\GHG\sourceCode\exe_common.cpp(204,17): error C2297: “<<”: 非法，右操作数包含“const char [30]”类型
+F:\课件\GHG\sourceCode\exe_common.cpp(204,13): error C2146: 语法错误: 缺少“;”(在标识符“cout”的前面)
+F:\课件\GHG\sourceCode\exe_common.cpp(208,45): error C2296: “<<”: 非法，左操作数包含“void”类型
+F:\课件\GHG\sourceCode\exe_common.cpp(208,45): error C2297: “<<”: 非法，右操作数包含“const char [8]”类型
+F:\课件\GHG\sourceCode\exe_common.cpp(209,45): error C2296: “<<”: 非法，左操作数包含“void”类型
+F:\课件\GHG\sourceCode\exe_common.cpp(209,45): error C2297: “<<”: 非法，右操作数包含“const char [8]”类型
+F:\课件\GHG\sourceCode\exe_common.cpp(213,19): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\exe_common.cpp(214,13): error C2143: 语法错误: 缺少“;”(在“return”的前面)
+F:\课件\GHG\sourceCode\exe_common.cpp(297,62): error C2143: 语法错误: 缺少“;”(在“:”的前面)
+F:\课件\GHG\sourceCode\exe_common.cpp(297,62): error C2059: 语法错误:“:”
+F:\课件\GHG\sourceCode\exe_common.cpp(297,63): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\exe_common.cpp(328,11): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\exe_common.cpp(329,5): error C2146: 语法错误: 缺少“;”(在标识符“cout”的前面)
+F:\课件\GHG\sourceCode\exe_common.cpp(335,23): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\exe_common.cpp(344,88): error C2296: “<<”: 非法，左操作数包含“void”类型
+F:\课件\GHG\sourceCode\exe_common.cpp(344,88): error C2297: “<<”: 非法，右操作数包含“const char [43]”类型
+F:\课件\GHG\sourceCode\exe_common.cpp(418,15): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\exe_common.cpp(419,5): error C2143: 语法错误: 缺少“;”(在“}”的前面)
+F:\课件\GHG\sourceCode\exe_common.cpp(422,25): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\exe_common.cpp(425,19): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\exe_common.cpp(426,9): error C2143: 语法错误: 缺少“;”(在“}”的前面)
+F:\课件\GHG\sourceCode\exe_common.cpp(450,24): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\exe_common.cpp(474,35): error C2678: 二进制“<<”: 没有找到接受“void”类型的左操作数的运算符(或没有可接受的转换)
+F:\课件\GHG\sourceCode\hackgame.h(128,6): message : 可能是“void operator <<(const std::ostream &,const Color &)”
+F:\课件\GHG\sourceCode\exe_common.cpp(474,35): message : 尝试匹配参数列表“(void, Color)”时
+  exe_mail.cpp
+F:\课件\GHG\sourceCode\exe_mail.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\hackgame.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\hackgame.h(642,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\exe_mail.cpp(237,101): error C3688: 文本后缀“閭ｉ噷涓嬭浇涓€涓猻niffer”无效；未找到文文本运算符或文本运算符模板“operator """"閭ｉ噷涓嬭浇涓€涓猻niffer”
+F:\课件\GHG\sourceCode\exe_mail.cpp(237,105): error C2017: 非法的转义序列
+F:\课件\GHG\sourceCode\exe_mail.cpp(237,107): error C2017: 非法的转义序列
+F:\课件\GHG\sourceCode\exe_mail.cpp(237,106): error C2146: 语法错误: 缺少“;”(在标识符“n”的前面)
+F:\课件\GHG\sourceCode\exe_mail.cpp(237,109): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\exe_mail.cpp(237,108): error C2146: 语法错误: 缺少“;”(在标识符“n”的前面)
+F:\课件\GHG\sourceCode\exe_mail.cpp(237,109): error C2143: 语法错误: 缺少“;”(在“字符串”的前面)
+F:\课件\GHG\sourceCode\exe_mail.cpp(238,9): error C2146: 语法错误: 缺少“;”(在标识符“cout”的前面)
+F:\课件\GHG\sourceCode\exe_mail.cpp(253,284): error C3688: 文本后缀“閭ｉ噷涓嬭浇涓€涓猰ail2”无效；未找到文文本运算符或文本运算符模板“operator """"閭ｉ噷涓嬭浇涓€涓猰ail2”
+F:\课件\GHG\sourceCode\exe_mail.cpp(253,288): error C2017: 非法的转义序列
+F:\课件\GHG\sourceCode\exe_mail.cpp(253,290): error C2017: 非法的转义序列
+F:\课件\GHG\sourceCode\exe_mail.cpp(253,289): error C2146: 语法错误: 缺少“;”(在标识符“n”的前面)
+F:\课件\GHG\sourceCode\exe_mail.cpp(253,292): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\exe_mail.cpp(253,291): error C2146: 语法错误: 缺少“;”(在标识符“n”的前面)
+F:\课件\GHG\sourceCode\exe_mail.cpp(253,292): error C2143: 语法错误: 缺少“;”(在“字符串”的前面)
+F:\课件\GHG\sourceCode\exe_mail.cpp(254,9): error C2146: 语法错误: 缺少“;”(在标识符“cout”的前面)
+  exe_mail2.cpp
+F:\课件\GHG\sourceCode\exe_mail2.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\hackgame.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\hackgame.h(642,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\exe_mail2.cpp(18,15): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\exe_mail2.cpp(19,5): error C2143: 语法错误: 缺少“;”(在“}”的前面)
+F:\课件\GHG\sourceCode\exe_mail2.cpp(32,26): warning C4018: “<=”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\exe_mail2.cpp(33,104): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\exe_mail2.cpp(34,5): error C3688: 文本后缀“鐨勯偖浠朵笉瀛樺湪”无效；未找到文文本运算符或文本运算符模板“operator """"鐨勯偖浠朵笉瀛樺湪”
+F:\课件\GHG\sourceCode\exe_mail2.cpp(34,5): error C2143: 语法错误: 缺少“;”(在“}”的前面)
+F:\课件\GHG\sourceCode\exe_mail2.cpp(45,44): error C2296: “<<”: 非法，左操作数包含“void”类型
+F:\课件\GHG\sourceCode\exe_mail2.cpp(45,44): error C2297: “<<”: 非法，右操作数包含“const char [14]”类型
+F:\课件\GHG\sourceCode\exe_mail2.cpp(46,20): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\exe_mail2.cpp(64,14): warning C4018: “<=”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\exe_mail2.cpp(82,25): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\exe_mail2.cpp(111,103): error C2296: “<<”: 非法，左操作数包含“void”类型
+F:\课件\GHG\sourceCode\exe_mail2.cpp(111,103): error C2297: “<<”: 非法，右操作数包含“const char [48]”类型
+F:\课件\GHG\sourceCode\exe_mail2.cpp(127,75): error C3688: 文本后缀“鏉￠偖浠”无效；未找到文文本运算符或文本运算符模板“operator """"鏉￠偖浠”
+  exe_sniffer.cpp
+F:\课件\GHG\sourceCode\hackgame.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\hackgame.h(642,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  exe_style.cpp
+F:\课件\GHG\sourceCode\hackgame.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\hackgame.h(642,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  exe_undefined.cpp
+F:\课件\GHG\sourceCode\exe_undefined.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\hackgame.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\hackgame.h(642,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\exe_undefined.cpp(6,13): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\exe_undefined.cpp(7,5): error C2143: 语法错误: 缺少“;”(在“return”的前面)
+  kernel_computer.cpp
+F:\课件\GHG\sourceCode\kernel_computer.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\hackgame.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\hackgame.h(642,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\kernel_computer.cpp(78,56): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\kernel_computer.cpp(79,5): error C2146: 语法错误: 缺少“)”(在标识符“locate_dir”的前面)
+F:\课件\GHG\sourceCode\kernel_computer.cpp(79,5): error C2146: 语法错误: 缺少“;”(在标识符“locate_dir”的前面)
+F:\课件\GHG\sourceCode\kernel_computer.cpp(79,56): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\kernel_computer.cpp(80,5): error C2146: 语法错误: 缺少“)”(在标识符“locate_dir”的前面)
+F:\课件\GHG\sourceCode\kernel_computer.cpp(80,5): error C2146: 语法错误: 缺少“;”(在标识符“locate_dir”的前面)
+F:\课件\GHG\sourceCode\kernel_computer.cpp(80,55): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\kernel_computer.cpp(81,5): error C2146: 语法错误: 缺少“)”(在标识符“locate_dir”的前面)
+F:\课件\GHG\sourceCode\kernel_computer.cpp(81,5): error C2146: 语法错误: 缺少“;”(在标识符“locate_dir”的前面)
+F:\课件\GHG\sourceCode\kernel_computer.cpp(81,55): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\kernel_computer.cpp(82,5): error C2146: 语法错误: 缺少“)”(在标识符“locate_dir”的前面)
+F:\课件\GHG\sourceCode\kernel_computer.cpp(82,5): error C2146: 语法错误: 缺少“;”(在标识符“locate_dir”的前面)
+F:\课件\GHG\sourceCode\kernel_computer.cpp(82,51): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\kernel_computer.cpp(83,5): error C2146: 语法错误: 缺少“)”(在标识符“root”的前面)
+F:\课件\GHG\sourceCode\kernel_computer.cpp(83,5): error C2146: 语法错误: 缺少“;”(在标识符“root”的前面)
+F:\课件\GHG\sourceCode\kernel_computer.cpp(139,22): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\kernel_computer.cpp(162,24): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\kernel_computer.cpp(163,9): error C2143: 语法错误: 缺少“;”(在“return”的前面)
+F:\课件\GHG\sourceCode\kernel_computer.cpp(166,19): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\kernel_computer.cpp(171,55): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\kernel_computer.cpp(178,19): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\kernel_computer.cpp(581,5): error C2143: 语法错误: 缺少“;”(在“return”的前面)
+F:\课件\GHG\sourceCode\kernel_computer.cpp(582,1): error C2143: 语法错误: 缺少“)”(在“}”的前面)
+F:\课件\GHG\sourceCode\kernel_computer.cpp(582,1): error C2059: 语法错误:“}”
+F:\课件\GHG\sourceCode\kernel_computer.cpp(695,101): error C2017: 非法的转义序列
+F:\课件\GHG\sourceCode\kernel_computer.cpp(695,103): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\kernel_computer.cpp(695,103): error C3688: 文本后缀“澶嶅埗鍒拌繙绋嬬洰褰data”无效；未找到文文本运算符或文本运算符模板“operator """"澶嶅埗鍒拌繙绋嬬洰褰data”
+F:\课件\GHG\sourceCode\kernel_computer.cpp(695,102): error C2146: 语法错误: 缺少“;”(在标识符“n”的前面)
+F:\课件\GHG\sourceCode\kernel_computer.cpp(695,103): error C2143: 语法错误: 缺少“;”(在“字符串”的前面)
+F:\课件\GHG\sourceCode\kernel_computer.cpp(696,9): error C2146: 语法错误: 缺少“;”(在标识符“delay”的前面)
+F:\课件\GHG\sourceCode\kernel_computer.cpp(758,101): error C2017: 非法的转义序列
+F:\课件\GHG\sourceCode\kernel_computer.cpp(758,103): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\kernel_computer.cpp(758,103): error C3688: 文本后缀“澶嶅埗鍒拌繙绋嬬洰褰data”无效；未找到文文本运算符或文本运算符模板“operator """"澶嶅埗鍒拌繙绋嬬洰褰data”
+F:\课件\GHG\sourceCode\kernel_computer.cpp(758,102): error C2146: 语法错误: 缺少“;”(在标识符“n”的前面)
+F:\课件\GHG\sourceCode\kernel_computer.cpp(758,103): error C2143: 语法错误: 缺少“;”(在“字符串”的前面)
+F:\课件\GHG\sourceCode\kernel_computer.cpp(759,9): error C2146: 语法错误: 缺少“;”(在标识符“delay”的前面)
+F:\课件\GHG\sourceCode\kernel_computer.cpp(796,92): error C2017: 非法的转义序列
+F:\课件\GHG\sourceCode\kernel_computer.cpp(796,94): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\kernel_computer.cpp(796,94): error C3688: 文本后缀“澶嶅埗鍒版湰鍦扮洰褰data”无效；未找到文文本运算符或文本运算符模板“operator """"澶嶅埗鍒版湰鍦扮洰褰data”
+F:\课件\GHG\sourceCode\kernel_computer.cpp(796,93): error C2146: 语法错误: 缺少“;”(在标识符“n”的前面)
+F:\课件\GHG\sourceCode\kernel_computer.cpp(796,94): error C2143: 语法错误: 缺少“;”(在“字符串”的前面)
+F:\课件\GHG\sourceCode\kernel_computer.cpp(797,9): error C2146: 语法错误: 缺少“;”(在标识符“delay”的前面)
+F:\课件\GHG\sourceCode\kernel_computer.cpp(1006,1): fatal error C1071: 在注释中遇到意外的文件结束
+  kernel_encoding.cpp
+F:\课件\GHG\sourceCode\kernel_encoding.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\hackgame.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\hackgame.h(642,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\kernel_encoding.cpp(108,19): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\kernel_encoding.cpp(140,19): warning C4018: “<”: 有符号/无符号不匹配
+  kernel_filesystem.cpp
+F:\课件\GHG\sourceCode\kernel_filesystem.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\hackgame.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\hackgame.h(642,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\kernel_filesystem.cpp(45,40): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\kernel_filesystem.cpp(46,4): error C2143: 语法错误: 缺少“;”(在“return”的前面)
+F:\课件\GHG\sourceCode\kernel_filesystem.cpp(63,17): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\kernel_filesystem.cpp(66,17): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\kernel_filesystem.cpp(88,21): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\kernel_filesystem.cpp(119,21): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\kernel_filesystem.cpp(123,79): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\kernel_filesystem.cpp(125,3): error C3688: 文本后缀“宸茬粡瀛樺湪”无效；未找到文文本运算符或文本运算符模板“operator """"宸茬粡瀛樺湪”
+F:\课件\GHG\sourceCode\kernel_filesystem.cpp(125,3): error C2143: 语法错误: 缺少“;”(在“}”的前面)
+F:\课件\GHG\sourceCode\kernel_filesystem.cpp(144,25): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\kernel_filesystem.cpp(161,25): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\kernel_filesystem.cpp(173,21): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\kernel_filesystem.cpp(188,21): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\kernel_filesystem.cpp(405,19): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\kernel_filesystem.cpp(414,19): warning C4018: “<”: 有符号/无符号不匹配
+  kernel_loader.cpp
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\hackgame.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\hackgame.h(642,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\kernel_loader.cpp(15,15): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\kernel_loader.cpp(16,9): error C2146: 语法错误: 缺少“;”(在标识符“cout”的前面)
+F:\课件\GHG\sourceCode\kernel_loader.cpp(16,15): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\kernel_loader.cpp(17,9): error C2146: 语法错误: 缺少“;”(在标识符“cout”的前面)
+F:\课件\GHG\sourceCode\kernel_loader.cpp(31,19): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\kernel_loader.cpp(32,13): error C2146: 语法错误: 缺少“;”(在标识符“cout”的前面)
+F:\课件\GHG\sourceCode\kernel_loader.cpp(33,19): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\kernel_loader.cpp(34,13): error C2146: 语法错误: 缺少“;”(在标识符“cout”的前面)
+F:\课件\GHG\sourceCode\kernel_loader.cpp(39,19): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\kernel_loader.cpp(40,13): error C2146: 语法错误: 缺少“;”(在标识符“cout”的前面)
+F:\课件\GHG\sourceCode\kernel_loader.cpp(40,19): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\kernel_loader.cpp(41,13): error C2146: 语法错误: 缺少“;”(在标识符“cout”的前面)
+F:\课件\GHG\sourceCode\kernel_loader.cpp(41,19): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\kernel_loader.cpp(42,13): error C2146: 语法错误: 缺少“;”(在标识符“getline”的前面)
+F:\课件\GHG\sourceCode\kernel_loader.cpp(123,19): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\kernel_loader.cpp(124,13): error C2143: 语法错误: 缺少“;”(在“break”的前面)
+F:\课件\GHG\sourceCode\kernel_loader.cpp(135,15): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\kernel_loader.cpp(136,9): error C2146: 语法错误: 缺少“;”(在标识符“exit”的前面)
+F:\课件\GHG\sourceCode\kernel_loader.cpp(143,15): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\kernel_loader.cpp(144,9): error C2146: 语法错误: 缺少“;”(在标识符“cout”的前面)
+F:\课件\GHG\sourceCode\kernel_loader.cpp(158,15): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\kernel_loader.cpp(159,9): error C2146: 语法错误: 缺少“;”(在标识符“exit”的前面)
+F:\课件\GHG\sourceCode\kernel_loader.cpp(164,11): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\kernel_loader.cpp(165,5): error C2143: 语法错误: 缺少“;”(在“return”的前面)
+F:\课件\GHG\sourceCode\kernel_loader.cpp(249,86): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\kernel_loader.cpp(249,8): error C3680: 不能将用户定义的字符串常量与不匹配的文本后缀标识符连接
+F:\课件\GHG\sourceCode\kernel_loader.cpp(249,8): message : 将后缀“y”与后缀“Y”连接
+F:\课件\GHG\sourceCode\kernel_loader.cpp(249,8): error C3688: 文本后缀“y”无效；未找到文文本运算符或文本运算符模板“operator """"y”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(249,85): error C2143: 语法错误: 缺少“;”(在“常数”的前面)
+F:\课件\GHG\sourceCode\kernel_loader.cpp(249,8): error C2429: 语言功能 "if/switch 中的 init-statement" 需要编译器标志 "/std:c++17"
+F:\课件\GHG\sourceCode\kernel_loader.cpp(251,24): error C2059: 语法错误:“;”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(253,5): error C2059: 语法错误:“else”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(254,1): error C2143: 语法错误: 缺少“;”(在“{”的前面)
+F:\课件\GHG\sourceCode\kernel_loader.cpp(254,1): error C2447: “{”: 缺少函数标题(是否是老式的形式表?)
+F:\课件\GHG\sourceCode\kernel_loader.cpp(257,9): error C2143: 语法错误: 缺少“;”(在“<<”的前面)
+F:\课件\GHG\sourceCode\kernel_loader.cpp(257,1): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+F:\课件\GHG\sourceCode\kernel_loader.cpp(258,8): error C2143: 语法错误: 缺少“;”(在“>>”的前面)
+F:\课件\GHG\sourceCode\kernel_loader.cpp(258,8): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+F:\课件\GHG\sourceCode\kernel_loader.cpp(259,24): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+F:\课件\GHG\sourceCode\kernel_loader.cpp(259,5): error C2371: “default_filename”: 重定义；不同的基类型
+F:\课件\GHG\sourceCode\hackgame.h(552): message : 参见“default_filename”的声明
+F:\课件\GHG\sourceCode\kernel_loader.cpp(259,24): error C2065: “input”: 未声明的标识符
+F:\课件\GHG\sourceCode\kernel_loader.cpp(260,16): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+F:\课件\GHG\sourceCode\kernel_loader.cpp(260,16): error C2872: “cin”: 不明确的符号
+F:\课件\GHG\sourceCode\kernel_loader.cpp(258,5): message : 可能是“int cin”
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\iostream(40,57): message : 或  “std::istream std::cin”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(260,18): error C2065: “input”: 未声明的标识符
+F:\课件\GHG\sourceCode\kernel_loader.cpp(260,23): error C2440: “初始化”: 无法从“initializer list”转换为“int”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(260,12): message : 初始值设定项包含过多元素
+F:\课件\GHG\sourceCode\kernel_loader.cpp(261,1): error C2059: 语法错误:“}”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(261,1): error C2143: 语法错误: 缺少“;”(在“}”的前面)
+F:\课件\GHG\sourceCode\kernel_loader.cpp(264,1): error C2143: 语法错误: 缺少“;”(在“{”的前面)
+F:\课件\GHG\sourceCode\kernel_loader.cpp(264,1): error C2447: “{”: 缺少函数标题(是否是老式的形式表?)
+F:\课件\GHG\sourceCode\kernel_loader.cpp(521,14): error C2872: “cout”: 不明确的符号
+F:\课件\GHG\sourceCode\kernel_loader.cpp(257,5): message : 可能是“int cout”
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\iostream(41,57): message : 或  “std::ostream std::cout”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(521,46): error C2297: “<<”: 非法，右操作数包含“const char [19]”类型
+F:\课件\GHG\sourceCode\kernel_loader.cpp(521,52): error C2563: 在形参表中不匹配
+F:\课件\GHG\sourceCode\kernel_loader.cpp(521,52): error C2568: “<<”: 无法解析函数重载
+F:\课件\GHG\sourceCode\kernel_loader.cpp(521,52): message : 可能是“std::basic_ostream<_Elem,_Traits> &std::endl(std::basic_ostream<_Elem,_Traits> &)”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(534,16): error C2872: “getline”: 不明确的符号
+F:\课件\GHG\sourceCode\kernel_loader.cpp(260,5): message : 可能是“int getline”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(534,16): message : 或  “getline”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(534,9): error C2064: 项不会计算为接受 2 个参数的函数
+F:\课件\GHG\sourceCode\kernel_loader.cpp(546,17): error C2872: “cout”: 不明确的符号
+F:\课件\GHG\sourceCode\kernel_loader.cpp(257,5): message : 可能是“int cout”
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\iostream(41,57): message : 或  “std::ostream std::cout”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(546,24): error C2678: 二进制“<<”: 没有找到接受“int”类型的左操作数的运算符(或没有可接受的转换)
+F:\课件\GHG\sourceCode\hackgame.h(128,6): message : 可能是“void operator <<(const std::ostream &,const Color &)”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(546,24): message : 尝试匹配参数列表“(int, std::string)”时
+F:\课件\GHG\sourceCode\kernel_loader.cpp(562,21): error C2872: “cout”: 不明确的符号
+F:\课件\GHG\sourceCode\kernel_loader.cpp(257,5): message : 可能是“int cout”
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\iostream(41,57): message : 或  “std::ostream std::cout”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(562,23): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\kernel_loader.cpp(563,17): error C2297: “<<”: 非法，右操作数包含“const char [41]”类型
+F:\课件\GHG\sourceCode\kernel_loader.cpp(563,17): error C2143: 语法错误: 缺少“;”(在“return”的前面)
+F:\课件\GHG\sourceCode\kernel_loader.cpp(562,21): warning C4552: ”<<“: 未使用表达式结果
+F:\课件\GHG\sourceCode\kernel_loader.cpp(856,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\kernel_loader.cpp(905,14): error C2872: “cout”: 不明确的符号
+F:\课件\GHG\sourceCode\kernel_loader.cpp(257,5): message : 可能是“int cout”
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\iostream(41,57): message : 或  “std::ostream std::cout”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(905,93): error C2297: “<<”: 非法，右操作数包含“const char [60]”类型
+F:\课件\GHG\sourceCode\kernel_loader.cpp(905,99): error C2563: 在形参表中不匹配
+F:\课件\GHG\sourceCode\kernel_loader.cpp(905,99): error C2568: “<<”: 无法解析函数重载
+F:\课件\GHG\sourceCode\kernel_loader.cpp(905,99): message : 可能是“std::basic_ostream<_Elem,_Traits> &std::endl(std::basic_ostream<_Elem,_Traits> &)”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(912,13): error C2872: “cout”: 不明确的符号
+F:\课件\GHG\sourceCode\kernel_loader.cpp(257,5): message : 可能是“int cout”
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\iostream(41,57): message : 或  “std::ostream std::cout”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(912,15): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\kernel_loader.cpp(913,9): error C2297: “<<”: 非法，右操作数包含“const char [39]”类型
+F:\课件\GHG\sourceCode\kernel_loader.cpp(913,9): error C2143: 语法错误: 缺少“;”(在“return”的前面)
+F:\课件\GHG\sourceCode\kernel_loader.cpp(912,13): warning C4552: ”<<“: 未使用表达式结果
+F:\课件\GHG\sourceCode\kernel_loader.cpp(915,20): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1076,17): error C2872: “cout”: 不明确的符号
+F:\课件\GHG\sourceCode\kernel_loader.cpp(257,5): message : 可能是“int cout”
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\iostream(41,57): message : 或  “std::ostream std::cout”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1076,19): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1077,9): error C2297: “<<”: 非法，右操作数包含“const char [49]”类型
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1077,9): error C2143: 语法错误: 缺少“;”(在“}”的前面)
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1076,17): warning C4552: ”<<“: 未使用表达式结果
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1083,13): error C2872: “cout”: 不明确的符号
+F:\课件\GHG\sourceCode\kernel_loader.cpp(257,5): message : 可能是“int cout”
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\iostream(41,57): message : 或  “std::ostream std::cout”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1083,53): error C2297: “<<”: 非法，右操作数包含“const char [25]”类型
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1083,59): error C2563: 在形参表中不匹配
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1083,59): error C2568: “<<”: 无法解析函数重载
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1083,59): message : 可能是“std::basic_ostream<_Elem,_Traits> &std::endl(std::basic_ostream<_Elem,_Traits> &)”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1086,20): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1123,21): error C2872: “cout”: 不明确的符号
+F:\课件\GHG\sourceCode\kernel_loader.cpp(257,5): message : 可能是“int cout”
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\iostream(41,57): message : 或  “std::ostream std::cout”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1123,86): error C2297: “<<”: 非法，右操作数包含“const char [46]”类型
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1123,110): error C2678: 二进制“<<”: 没有找到接受“int”类型的左操作数的运算符(或没有可接受的转换)
+F:\课件\GHG\sourceCode\hackgame.h(128,6): message : 可能是“void operator <<(const std::ostream &,const Color &)”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1123,110): message : 尝试匹配参数列表“(int, std::string)”时
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1128,17): error C2872: “cout”: 不明确的符号
+F:\课件\GHG\sourceCode\kernel_loader.cpp(257,5): message : 可能是“int cout”
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\iostream(41,57): message : 或  “std::ostream std::cout”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1128,54): error C2297: “<<”: 非法，右操作数包含“const char [22]”类型
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1128,66): error C2678: 二进制“<<”: 没有找到接受“int”类型的左操作数的运算符(或没有可接受的转换)
+F:\课件\GHG\sourceCode\hackgame.h(128,6): message : 可能是“void operator <<(const std::ostream &,const Color &)”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1128,66): message : 尝试匹配参数列表“(int, std::string)”时
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1135,13): error C2872: “cout”: 不明确的符号
+F:\课件\GHG\sourceCode\kernel_loader.cpp(257,5): message : 可能是“int cout”
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\iostream(41,57): message : 或  “std::ostream std::cout”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1135,53): error C2297: “<<”: 非法，右操作数包含“const char [25]”类型
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1135,59): error C2563: 在形参表中不匹配
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1135,59): error C2568: “<<”: 无法解析函数重载
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1135,59): message : 可能是“std::basic_ostream<_Elem,_Traits> &std::endl(std::basic_ostream<_Elem,_Traits> &)”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1138,20): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1146,24): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1157,24): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1172,13): error C2872: “cout”: 不明确的符号
+F:\课件\GHG\sourceCode\kernel_loader.cpp(257,5): message : 可能是“int cout”
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\iostream(41,57): message : 或  “std::ostream std::cout”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1172,53): error C2297: “<<”: 非法，右操作数包含“const char [25]”类型
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1172,59): error C2563: 在形参表中不匹配
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1172,59): error C2568: “<<”: 无法解析函数重载
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1172,59): message : 可能是“std::basic_ostream<_Elem,_Traits> &std::endl(std::basic_ostream<_Elem,_Traits> &)”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1175,20): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1195,24): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1214,13): error C2872: “cout”: 不明确的符号
+F:\课件\GHG\sourceCode\kernel_loader.cpp(257,5): message : 可能是“int cout”
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\iostream(41,57): message : 或  “std::ostream std::cout”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1214,53): error C2297: “<<”: 非法，右操作数包含“const char [25]”类型
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1214,59): error C2563: 在形参表中不匹配
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1214,59): error C2568: “<<”: 无法解析函数重载
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1214,59): message : 可能是“std::basic_ostream<_Elem,_Traits> &std::endl(std::basic_ostream<_Elem,_Traits> &)”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1217,20): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1225,24): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1232,24): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1243,13): error C2872: “cout”: 不明确的符号
+F:\课件\GHG\sourceCode\kernel_loader.cpp(257,5): message : 可能是“int cout”
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\iostream(41,57): message : 或  “std::ostream std::cout”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1243,53): error C2297: “<<”: 非法，右操作数包含“const char [25]”类型
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1243,59): error C2563: 在形参表中不匹配
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1243,59): error C2568: “<<”: 无法解析函数重载
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1243,59): message : 可能是“std::basic_ostream<_Elem,_Traits> &std::endl(std::basic_ostream<_Elem,_Traits> &)”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1246,20): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1299,13): error C2872: “cout”: 不明确的符号
+F:\课件\GHG\sourceCode\kernel_loader.cpp(257,5): message : 可能是“int cout”
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\iostream(41,57): message : 或  “std::ostream std::cout”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1299,63): error C2297: “<<”: 非法，右操作数包含“const char [47]”类型
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1299,69): error C2563: 在形参表中不匹配
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1299,69): error C2568: “<<”: 无法解析函数重载
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1299,69): message : 可能是“std::basic_ostream<_Elem,_Traits> &std::endl(std::basic_ostream<_Elem,_Traits> &)”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1305,24): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1315,24): warning C4018: “<”: 有符号/无符号不匹配
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1332,13): error C2872: “cout”: 不明确的符号
+F:\课件\GHG\sourceCode\kernel_loader.cpp(257,5): message : 可能是“int cout”
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\iostream(41,57): message : 或  “std::ostream std::cout”
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1332,63): error C2297: “<<”: 非法，右操作数包含“const char [47]”类型
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1332,69): error C2563: 在形参表中不匹配
+F:\课件\GHG\sourceCode\kernel_loader.cpp(1332,69): fatal error C1003: 错误计数超过 100；正在停止编译
+  kernel_main.cpp
+F:\课件\GHG\sourceCode\kernel_main.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\hackgame.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\hackgame.h(642,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\kernel_main.cpp(12,26): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\kernel_main.cpp(13,5): error C2143: 语法错误: 缺少“)”(在“while”的前面)
+F:\课件\GHG\sourceCode\kernel_main.cpp(13,5): error C2143: 语法错误: 缺少“;”(在“while”的前面)
+F:\课件\GHG\sourceCode\kernel_main.cpp(15,29): error C2001: 常量中有换行符
+F:\课件\GHG\sourceCode\kernel_main.cpp(16,5): error C2143: 语法错误: 缺少“)”(在“}”的前面)
+F:\课件\GHG\sourceCode\kernel_main.cpp(16,5): error C2143: 语法错误: 缺少“;”(在“}”的前面)
+  kernel_network.cpp
+F:\课件\GHG\sourceCode\hackgame.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\hackgame.h(642,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\kernel_network.cpp(123,18): warning C4018: “<”: 有符号/无符号不匹配
+  kernel_supershell.cpp
+F:\课件\GHG\sourceCode\kernel_supershell.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\hackgame.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\hackgame.h(642,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\kernel_supershell.cpp(18,26): warning C4018: “<”: 有符号/无符号不匹配
+  other_global_objects.cpp
+F:\课件\GHG\sourceCode\other_global_objects.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\hackgame.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\hackgame.h(642,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\other_global_objects.cpp(39,31): error C2440: “<function-style-cast>”: 无法从“Color”转换为“std::string”
+F:\课件\GHG\sourceCode\other_global_objects.cpp(39,31): message : 无构造函数可以接受源类型，或构造函数重载决策不明确
+F:\课件\GHG\sourceCode\other_global_objects.cpp(40,32): error C2676: 二进制“+”:“std::string”不定义该运算符或到预定义运算符可接收的类型的转换
+F:\课件\GHG\sourceCode\other_global_objects.cpp(41,31): error C2440: “<function-style-cast>”: 无法从“Color”转换为“std::string”
+F:\课件\GHG\sourceCode\other_global_objects.cpp(41,31): message : 无构造函数可以接受源类型，或构造函数重载决策不明确
+F:\课件\GHG\sourceCode\other_global_objects.cpp(34,14): error C2661: “Style::Style”: 没有重载函数接受 6 个参数
+  other_inbuild_savings.cpp
+F:\课件\GHG\sourceCode\other_inbuild_savings.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\hackgame.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\hackgame.h(642,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\other_inbuild_savings.cpp(5,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\other_inbuild_savings.cpp(7,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\other_inbuild_savings.cpp(8,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\other_inbuild_savings.cpp(10,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  other_logo.cpp
+F:\课件\GHG\sourceCode\other_logo.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\课件\GHG\sourceCode\hackgame.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
