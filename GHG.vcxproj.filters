@@ -27,9 +27,6 @@
     <ClCompile Include="sourceCode\exe_sniffer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="sourceCode\exe_style.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="sourceCode\exe_undefined.cpp">
       <Filter>源文件</Filter>
     </ClCompile>

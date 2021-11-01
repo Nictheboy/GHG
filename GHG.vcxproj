@@ -23,7 +23,6 @@
     <ClCompile Include="sourceCode\exe_mail.cpp" />
     <ClCompile Include="sourceCode\exe_mail2.cpp" />
     <ClCompile Include="sourceCode\exe_sniffer.cpp" />
-    <ClCompile Include="sourceCode\exe_style.cpp" />
     <ClCompile Include="sourceCode\exe_undefined.cpp" />
     <ClCompile Include="sourceCode\kernel_computer.cpp" />
     <ClCompile Include="sourceCode\kernel_encoding.cpp" />
