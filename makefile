@@ -1,4 +1,4 @@
-cc = g++ -std=c++11
+cc = g++ -std=c++11 -fsanitize=address
 prom = hackgame
 header = $(shell find ./src -maxdepth 1 -name "*.h")
 src = $(shell find ./src -maxdepth 1 -name "*.cpp")
