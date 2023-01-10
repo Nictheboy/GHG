@@ -1,0 +1,3 @@
+To add a task, you should:
+    1. Complete your task code in task.cpp, and edit the function jump_through_task(int index)
+    2. Edit the launch program in kernel_loader.cpp to provide an entrance
