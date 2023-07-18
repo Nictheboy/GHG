@@ -2,3 +2,10 @@ hackgame
 one.cpp
 src-utf8
 .vscode/
+.vs/
+x64/
+x86/
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
