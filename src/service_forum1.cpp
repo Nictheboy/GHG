@@ -1,7 +1,7 @@
 /*
- *文件名:   exe_chrome.cpp
+ *文件名:   service_forum1.cpp
  *作者:     Nictheboy
- *内容:     实现chrome.exe
+ *内容:     实现service_forum1
  *
  *最后一次修改: 2023/1/11
  */
@@ -21,3 +21,4 @@ int service_forum1(int n,const char **t, Computer *c)
     }
     return 0;
 }
+

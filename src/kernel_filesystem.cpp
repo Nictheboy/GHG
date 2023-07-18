@@ -59,6 +59,7 @@ FileSystem::file::~file()
 	DEBUG_FS("~file()")
 		if (data)
 			free(data);
+	data = nullptr;
 }
 bool FileSystem::file::run_exe(int n, const char** c, Computer* computer)
 {
@@ -83,7 +84,7 @@ bool FileSystem::file::run_exe(int n, const char** c, Computer* computer)
 		//释放参数
 		for (int i = 0; i < n; i++)
 		{
-			delete c_new[i];
+			delete[] c_new[i];
 		}
 		delete[] c_new;
 
@@ -500,7 +501,8 @@ void FileSystem::file::load_string(string str) {
 	DEBUG_FS("load_string(" << str << ")")
 		if (data) free(data);
 	size = str.size() + 1;
-	data = new char[size];
+	//data = new char[size];
+	data = (char*)malloc(size);
 	assert(data);
 	((char*)data)[size - 1] = '\0';
 	memcpy(data, str.c_str(), size - 1);
@@ -510,7 +512,8 @@ void FileSystem::file::load_data(size_t s, void* d) {
 	DEBUG_FS("load_data()")
 		if (data) free(data);
 	size = s;
-	data = new char[size];
+	//data = new char[size];
+	data = (char*)malloc(size);
 	assert(data);
 	memcpy(data, d, size);
 }
@@ -564,7 +567,8 @@ void FileSystem::file::load_exe(exe_adr adr)
 {
 	if (data) free(data);
 	size = sizeof(char) * 3 + sizeof(exe_adr);
-	data = new char[size];
+	//data = new char[size];
+	data = (char*)malloc(size);
 	char* tmp = (char*)data;
 	tmp[0] = 'E';
 	tmp[1] = 'X';

@@ -3,6 +3,11 @@
 #endif
 
 #ifdef LINUX_OS
+int strcpy_s(char *strDestination,size_t numberOfElements,const char *strSource)
+{
+    strncpy(strDestination, strSource, numberOfElements);
+    return 0;
+}
 void localtime_s_f(struct tm *ts,time_t *timep)
 {
     localtime_r(timep,ts);

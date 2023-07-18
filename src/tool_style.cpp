@@ -28,3 +28,4 @@ Style::Style(string s1, string s2, string s3, string s4, string s5,
 	after_ip = s8;
 	getinput = s9;
 }
+
